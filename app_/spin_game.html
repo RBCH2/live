@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spin Game</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gotham:wght@400;700&display=swap">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background: #535353;
+            transition: background 1s ease;
+            font-family: 'Gotham', sans-serif;
+        }
+        .svg-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('svg-image-6.svg') no-repeat center center;
+            background-size: cover;
+            z-index: 0;
+            pointer-events: none;
+            mix-blend-mode: overlay;
+        }
+        #gameContainer {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+        }
+        #spinnerContainer {
+            perspective: 1000px;
+        }
+        #spinner {
+            width: 80%;
+            transform-style: preserve-3d;
+            transition: transform 2s;
+            position: relative;
+        }
+        #spinner::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 80%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1), rgba(255, 0, 0, 0.5), rgba(255, 255, 255, 0));
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.2s, transform 0.2s;
+            z-index: -1;
+        }
+        #spinner:hover::before {
+            opacity: 1;
+            animation: flame 1s infinite;
+        }
+        @keyframes flame {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        #timer, #level {
+            position: absolute;
+            font-size: 18px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        #timer {
+            top: 20px;
+            right: 20px;
+        }
+        #level {
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+        #quotes {
+            position: absolute;
+            font-size: 18px;
+            color: white;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 2;
+        }
+        #winnerText {
+            display: none;
+            font-size: 0px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="svg-background"></div>
+    <div id="gameContainer">
+        <div id="spinnerContainer">
+            <center><img id="spinner" src="grey_pod.gif" alt="Spinner" style="width: 75%;"></center>
+            <div id="winnerText" style="font-size: 0px;">SELAMAT!</div>
+        </div>
+        <div id="timer">30</div>
+        <div id="level">Level: 1 | Clicks: 0</div>
+        <div id="quotes"></div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="resultModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="resultModalLabel">Result</h5>
+                    <button style="color: #fff;" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="resultModalBody">
+                    <!-- Result message will be injected here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="modalContinueBtn">Lanjutkan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+        let angle = 0;
+        const spinner = document.getElementById('spinner');
+        const winnerText = document.getElementById('winnerText');
+        const timerElement = document.getElementById('timer');
+        const levelElement = document.getElementById('level');
+        const quotesElement = document.getElementById('quotes');
+        let timeLeft = 30;
+        let currentLevel = 1;
+        let clickCount = 0;
+        let prizeLevel = Math.floor(Math.random() * 5) + 1; // Random prize level between 1 and 5
+        let countdown;
+        let levelIncrementer;
+        let gameEnded = false;
+
+        const prizeImages = ['hadiah_1.png', 'hadiah_2.png', 'hadiah_3.png', 'hadiah_4.png'];
+
+        // Function to generate random background color
+        function getRandomBackgroundColor() {
+            const colors = ['#535353', '#252525'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        // Function to generate random caption for each level
+        function getRandomCaption() {
+            const captions = [
+                "Keep spinning!",
+                "You're doing great!",
+                "Almost there!",
+                "You got this!",
+                "Hang in there!",
+                "Keep going!",
+                "You're unstoppable!",
+                "You're a spinning pro!",
+                "You're on fire!",
+                "Nothing can stop you now!"
+                ];
+            return captions[Math.floor(Math.random() * captions.length)];
+        }
+
+        // Spin the image 360 degrees with 3D effect when clicked
+        spinner.addEventListener('click', () => {
+            if (!gameEnded) {
+                angle += 360;
+                spinner.style.transform = `rotateY(${angle}deg)`;
+
+                // Change background color
+                document.body.style.background = getRandomBackgroundColor();
+
+                // Update click count
+                clickCount++;
+                levelElement.innerHTML = `Level: ${currentLevel} | Clicks: ${clickCount}`;
+                quotesElement.innerHTML = getRandomCaption();
+            }
+        });
+
+        // Countdown timer
+        countdown = setInterval(() => {
+            if (!gameEnded) {
+                timeLeft--;
+                timerElement.textContent = timeLeft;
+
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    clearInterval(levelIncrementer);
+                    showResult(false, "Time's up! Try again.");
+                    gameEnded = true;
+                }
+            }
+        }, 1000);
+
+        // Level incrementer
+        levelIncrementer = setInterval(() => {
+            if (!gameEnded && currentLevel < 5) {
+                currentLevel++;
+                const caption = getRandomCaption();
+                levelElement.innerHTML = `Level: ${currentLevel} | Clicks: ${clickCount}`;
+                quotesElement.innerHTML = caption;
+
+                // Check if the current level is the prize level
+                if (currentLevel === prizeLevel) {
+                    showResult(true);
+                } else {
+                    // Check if the player loses based on a 10% probability
+                    const isLose = Math.random() < 0.1; // 10% probability
+                    if (isLose) {
+                        showResult(false);
+                    }
+                }
+            } else if (currentLevel >= 5) {
+                clearInterval(levelIncrementer);
+            }
+        }, 6000);
+
+        // Function to show result
+        function showResult(isPrize, message = '') {
+            if (isPrize) {
+                const prizeImage = prizeImages[Math.floor(Math.random() * prizeImages.length)];
+                spinner.src = prizeImage;
+                winnerText.style.display = 'block';
+                winnerText.style.fontSize = '0px';
+                gameEnded = true; // Game ends when player wins
+            } else {
+                $('#resultModalBody').text(message || 'Oops! Better luck next time.');
+                $('#resultModal').modal('show');
+            }
+        }
+
+        // Event listener for continue button in modal
+        $('#modalContinueBtn').on('click', () => {
+            $('#resultModal').modal('hide');
+            gameEnded = false; // Continue the game
+        });
+    </script>
+</body>
+</html>

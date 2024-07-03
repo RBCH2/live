@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../assets/images/favicon/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/images/favicon/favicon.png" type="image/x-icon">
+    <title>RB Control Hub</title>
+    <!-- Google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/font-awesome.css">
+    <!-- ico-font-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/icofont.css">
+    <!-- Themify icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/themify.css">
+    <!-- Flag icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/flag-icon.css">
+    <!-- Feather icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/feather-icon.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/animate.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/prism.css">
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/bootstrap.css">
+    <!-- App css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link id="color" rel="stylesheet" href="../assets/css/color-1.css" media="screen">
+    <!-- Responsive css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
+
+    <style>
+      .btn-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+  
+      .btn-icon i {
+        margin-right: 5px;
+      }
+    </style>
+    <style>
+    .warehouse-map {
+    width: 100%;
+    height: 300px; /* Example height */
+    background-image: url('path_to_map_image.jpg');
+    background-size: cover;
+    background-position: center;
+    }
+
+    .attachments {
+        margin-top: 20px;
+    }
+
+    /* Additional styles can be added as per design requirements */
+
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.css" rel="stylesheet">
+    <style>
+      .warehouse-section {
+        margin: 20px 0;
+        padding: 20px;
+        border: 2px dashed #ccc;
+        border-radius: 10px;
+      }
+      .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        text-align: center;
+        cursor: pointer;
+      }
+      .section-content {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+      }
+      .storage-location {
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 15px;
+        width: 200px;
+        margin: 10px;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      .storage-location:hover {
+        background-color: #e2e6ea;
+      }
+      .storage-location h5 {
+        margin-bottom: 10px;
+      }
+      .storage-location .item-name {
+        display: none;
+        margin-top: 10px;
+        font-weight: bold;
+      }
+      .btn-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .btn-icon i {
+        margin-right: 5px;
+      }
+      .item-details-card, .section-details-card {
+        margin-top: 20px;
+      }
+      .section-summary {
+        margin-top: 10px;
+      }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.16.2/dist/xlsx.full.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        feather.replace();
+    
+        const itemDetails = {
+          "Propeller": [
+            { itemName: "Propeller X100", location: "Location A1", purchaseTime: "2023-02-01", exitTime: "---", status: "In Stock", quantity: 10, price: "Rp 5.000.000,00" },
+            { itemName: "Propeller X200", location: "Location A1", purchaseTime: "2023-01-15", exitTime: "---", status: "In Stock", quantity: 12, price: "Rp 5.200.000,00" },
+            { itemName: "Propeller Y300", location: "Location A1", purchaseTime: "2023-03-05", exitTime: "---", status: "In Stock", quantity: 8, price: "Rp 4.800.000,00" },
+            { itemName: "Propeller Z400", location: "Location A1", purchaseTime: "2023-04-01", exitTime: "---", status: "In Stock", quantity: 15, price: "Rp 5.500.000,00" },
+            { itemName: "Propeller W500", location: "Location A1", purchaseTime: "2023-05-01", exitTime: "---", status: "In Stock", quantity: 20, price: "Rp 6.000.000,00" }
+          ],
+          "Engine Oil Filter": [
+            { itemName: "Engine Oil Filter A1", location: "Location A2", purchaseTime: "2023-02-05", exitTime: "2023-03-10", status: "Out of Stock", quantity: 50, price: "Rp 200.000,00" },
+            { itemName: "Engine Oil Filter B2", location: "Location A2", purchaseTime: "2023-01-10", exitTime: "2023-03-15", status: "Out of Stock", quantity: 30, price: "Rp 180.000,00" },
+            { itemName: "Engine Oil Filter C3", location: "Location A2", purchaseTime: "2023-04-05", exitTime: "2023-06-10", status: "Out of Stock", quantity: 40, price: "Rp 190.000,00" },
+            { itemName: "Engine Oil Filter D4", location: "Location A2", purchaseTime: "2023-07-15", exitTime: "2023-09-10", status: "Out of Stock", quantity: 25, price: "Rp 210.000,00" },
+            { itemName: "Engine Oil Filter E5", location: "Location A2", purchaseTime: "2023-08-20", exitTime: "2023-11-10", status: "Out of Stock", quantity: 20, price: "Rp 220.000,00" }
+          ],
+          "Fuel Pump": [
+            { itemName: "Fuel Pump P1", location: "Location A3", purchaseTime: "2023-01-15", exitTime: "---", status: "In Stock", quantity: 15, price: "Rp 750.000,00" },
+            { itemName: "Fuel Pump P2", location: "Location A3", purchaseTime: "2023-02-10", exitTime: "---", status: "In Stock", quantity: 10, price: "Rp 800.000,00" },
+            { itemName: "Fuel Pump P3", location: "Location A3", purchaseTime: "2023-03-05", exitTime: "---", status: "In Stock", quantity: 20, price: "Rp 820.000,00" },
+            { itemName: "Fuel Pump P4", location: "Location A3", purchaseTime: "2023-04-25", exitTime: "---", status: "In Stock", quantity: 25, price: "Rp 830.000,00" },
+            { itemName: "Fuel Pump P5", location: "Location A3", purchaseTime: "2023-05-10", exitTime: "---", status: "In Stock", quantity: 30, price: "Rp 840.000,00" }
+          ],
+          "Hydraulic Hose": [
+            { itemName: "Hydraulic Hose H1", location: "Location B1", purchaseTime: "2023-01-20", exitTime: "---", status: "In Stock", quantity: 50, price: "Rp 100.000,00" },
+            { itemName: "Hydraulic Hose H2", location: "Location B1", purchaseTime: "2023-02-15", exitTime: "---", status: "In Stock", quantity: 40, price: "Rp 105.000,00" },
+            { itemName: "Hydraulic Hose H3", location: "Location B1", purchaseTime: "2023-03-10", exitTime: "---", status: "In Stock", quantity: 60, price: "Rp 110.000,00" },
+            { itemName: "Hydraulic Hose H4", location: "Location B1", purchaseTime: "2023-04-05", exitTime: "---", status: "In Stock", quantity: 45, price: "Rp 115.000,00" },
+            { itemName: "Hydraulic Hose H5", location: "Location B1", purchaseTime: "2023-05-20", exitTime: "---", status: "In Stock", quantity: 55, price: "Rp 120.000,00" }
+          ],
+          "Water Pump": [
+            { itemName: "Water Pump WP1", location: "Location B2", purchaseTime: "2023-01-25", exitTime: "2023-03-15", status: "Out of Stock", quantity: 10, price: "Rp 300.000,00" },
+            { itemName: "Water Pump WP2", location: "Location B2", purchaseTime: "2023-02-10", exitTime: "2023-04-10", status: "Out of Stock", quantity: 20, price: "Rp 310.000,00" },
+            { itemName: "Water Pump WP3", location: "Location B2", purchaseTime: "2023-03-05", exitTime: "2023-05-15", status: "Out of Stock", quantity: 15, price: "Rp 320.000,00" },
+            { itemName: "Water Pump WP4", location: "Location B2", purchaseTime: "2023-04-01", exitTime: "2023-06-10", status: "Out of Stock", quantity: 12, price: "Rp 330.000,00" },
+            { itemName: "Water Pump WP5", location: "Location B2", purchaseTime: "2023-05-10", exitTime: "2023-07-15", status: "Out of Stock", quantity: 18, price: "Rp 340.000,00" }
+          ]
+        };
+    
+        // Click event for storage locations
+        $('.storage-location').on('click', function() {
+          const itemName = $(this).data('item');
+          const itemData = itemDetails[itemName] || [];
+    
+          $('#itemDetailsTableBody').empty();
+          itemData.forEach(item => {
+            const row = `
+              <tr>
+                <td>${item.itemName}</td>
+                <td>${item.location}</td>
+                <td>${item.purchaseTime}</td>
+                <td>${item.exitTime}</td>
+                <td>${item.status}</td>
+                <td>${item.quantity}</td>
+                <td>${item.price}</td>
+              </tr>
+            `;
+            $('#itemDetailsTableBody').append(row);
+          });
+    
+          $('#itemDetailsCard').removeClass('d-none');
+        });
+    
+        // Click event for section titles
+        $('.section-title').on('click', function() {
+          const section = $(this).parent();
+          const sectionName = section.attr('id');
+          const itemsInSection = section.find('.storage-location').map(function() {
+            return {
+              itemName: $(this).data('item'),
+              location: $(this).find('h5').text()
+            };
+          }).get();
+    
+          let summaryContent = `<h5>${sectionName}</h5><ul>`;
+          itemsInSection.forEach(item => {
+            summaryContent += `<li>${item.location}: ${item.itemName}</li>`;
+          });
+          summaryContent += '</ul>';
+    
+          $('#sectionSummary').html(summaryContent);
+          $('#sectionDetailsCard').removeClass('d-none');
+        });
+    
+        // Export to Excel
+        $('#exportBtn').on('click', function() {
+          const ws_data = [['Nama Barang', 'Jenis Lokasi', 'Waktu Pembelian', 'Waktu Keluar', 'Status', 'Kuantitas', 'Harga']];
+          Object.values(itemDetails).forEach(items => {
+            items.forEach(item => {
+              ws_data.push([item.itemName, item.location, item.purchaseTime, item.exitTime, item.status, item.quantity, item.price]);
+            });
+          });
+    
+          const ws = XLSX.utils.aoa_to_sheet(ws_data);
+          const wb = XLSX.utils.book_new();
+          XLSX.utils.book_append_sheet(wb, ws, 'Warehouse Data');
+          XLSX.writeFile(wb, 'Warehouse_Data.xlsx');
+        });
+    
+        // Search functionality
+        $('#searchInput').on('keyup', function() {
+          const searchTerm = $(this).val().toLowerCase();
+          $('#itemDetailsTableBody tr').each(function() {
+            const text = $(this).text().toLowerCase();
+            $(this).toggle(text.includes(searchTerm));
+          });
+        });
+    
+        $('#searchItemInput').on('keyup', function() {
+          const searchTerm = $(this).val().toLowerCase();
+          $('.storage-location').each(function() {
+            const itemName = $(this).data('item').toLowerCase();
+            const location = $(this).data('location').toLowerCase();
+            $(this).toggle(itemName.includes(searchTerm) || location.includes(searchTerm));
+          });
+        });
+      });
+    </script>
+
+    
+
+
+  </head>
+  <body>
+    <!-- tap on top starts-->
+    <div class="tap-top"><i data-feather="chevrons-up"></i></div>
+    <!-- tap on tap ends-->
+    <!-- Loader starts-->
+    <div class="loader-wrapper">
+      <div class="loader"></div>
+    </div>
+    <!-- Loader ends-->
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+      <!-- Page Header Start-->
+      <div class="page-header">
+        <div class="header-wrapper row m-0">
+          <form class="form-inline search-full col" action="#" method="get">
+            <div class="form-group w-100">
+              <div class="Typeahead Typeahead--twitterUsers">
+                <div class="u-posRelative">
+                  <input class="demo-input Typeahead-input form-control-plaintext w-100" type="text" placeholder="Search Koho .." name="q" title="" autofocus>
+                  <div class="spinner-border Typeahead-spinner" role="status"><span class="sr-only">Loading...</span></div>
+                  <i class="close-search" data-feather="x"></i>
+                </div>
+                <div class="Typeahead-menu"></div>
+              </div>
+            </div>
+          </form>
+          <div class="header-logo-wrapper col-auto p-0">
+            <div class="logo-wrapper"><a href="#"><img class="img-fluid for-light hg-50" src="../assets/images/logo/logo.png" alt=""><img class="img-fluid for-dark hg-50" src="../assets/images/logo/logo-dark.png" alt=""></a></div>
+            <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i></div>
+          </div>
+          <div class="left-header col horizontal-wrapper ps-0">
+            <div class="input-group">     
+              <input class="form-control" type="text" placeholder="Search Here..."><span class="input-group-text mobile-search"><i data-feather="search"></i></span>
+            </div>
+          </div>
+          <div class="nav-right col-6 pull-right right-header p-0">
+            <ul class="nav-menus">
+              <li>
+                <div class="mode"><i data-feather="moon"></i></div>
+              </li>
+              <li class="onhover-dropdown">
+                <div class="notification-box"><i data-feather="star"></i></div>
+                <div class="onhover-show-div bookmark-flip">
+                  <div class="flip-card">
+                    <div class="flip-card-inner">
+                      <div class="front">
+                        <ul class="droplet-dropdown bookmark-dropdown">
+                          <li class="gradient-primary">
+                            <i data-feather="star"></i>
+                            <h3 class="mb-0">Bookmark</h3>
+                          </li>
+                          <li>
+                            <div class="row">
+                              <div class="col-4 text-center"><a href="#"><i data-feather="file-text"></i></a></div>
+                              <div class="col-4 text-center"><a href="#"><i data-feather="activity"></i></a></div>
+                              <div class="col-4 text-center"><a href="#"><i data-feather="users"></i></a></div>
+                              <div class="col-4 text-center"><a href="#"><i data-feather="clipboard"></i></a></div>
+                              <div class="col-4 text-center"><a href="#"><i data-feather="anchor"></i></a></div>
+                              <div class="col-4 text-center"><a href="#"><i data-feather="settings"></i></a></div>
+                            </div>
+                          </li>
+                          <li class="text-center">
+                            <button class="flip-btn" id="flip-btn">Add New Bookmark</button>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="back">
+                        <ul>
+                          <li>
+                            <div class="droplet-dropdown bookmark-dropdown flip-back-content">
+                              <input type="text" placeholder="search...">
+                            </div>
+                          </li>
+                          <li class="pb-0">
+                            <button class="d-block flip-back" id="flip-back">Back          </button>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="onhover-dropdown">
+                <div class="notification-box"><i data-feather="bell"></i><span class="badge rounded-pill badge-primary">4                                </span></div>
+                <ul class="notification-dropdown onhover-show-div">
+                  <li>
+                    <i data-feather="bell">            </i>
+                    <h3 class="mb-0">Notifications</h3>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <p><i class="fa fa-circle-o me-3 font-primary"> </i>Delivery processing <span class="pull-right">10 min.</span></p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <p><i class="fa fa-circle-o me-3"></i>Order Complete<span class="pull-right">1 hr</span></p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <p><i class="fa fa-circle-o me-3 font-info"></i>Tickets Generated<span class="pull-right">3 hr</span></p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <p><i class="fa fa-circle-o me-3"></i>Delivery Complete<span class="pull-right">6 hr</span></p>
+                    </a>
+                  </li>
+                  <li><a class="btn btn-primary" href="#">Check all notification</a></li>
+                </ul>
+              </li>
+              <li class="onhover-dropdown">
+                <i data-feather="message-square"></i>
+                <ul class="chat-dropdown onhover-show-div">
+                  <li>
+                    <i data-feather="message-square"></i>
+                    <h3 class="mb-0">Message Box</h3>
+                  </li>
+                  <li>
+                    <div class="d-flex">
+                      <img class="img-fluid rounded-circle me-3" src="../assets/images/user/6.jpg" alt="">
+                      <div class="status-circle online"></div>
+                      <div class="flex-grow-1">
+                        <a href="#">
+                          <span>Ain Chavez</span>
+                          <p>Do you want to go see movie?</p>
+                        </a>
+                      </div>
+                      <p class="f-12">2 mins ago</p>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="d-flex">
+                      <img class="img-fluid rounded-circle me-3" src="../assets/images/user/1.jpg" alt="">
+                      <div class="status-circle online"></div>
+                      <div class="flex-grow-1">
+                        <a href="#">
+                          <span>Erica Hughes</span>
+                          <p>Thank you for rating us.</p>
+                        </a>
+                      </div>
+                      <p class="f-12">5 mins ago</p>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="d-flex">
+                      <img class="img-fluid rounded-circle me-3" src="../assets/images/user/7.jpg" alt="">
+                      <div class="status-circle offline"></div>
+                      <div class="flex-grow-1">
+                        <a href="#">
+                          <span>Kori Thomas</span>
+                          <p>What`s the project report update?</p>
+                        </a>
+                      </div>
+                      <p class="f-12">9 mins ago</p>
+                    </div>
+                  </li>
+                  <li class="text-center"> <a class="btn btn-primary" href="chat.html">View All     </a></li>
+                </ul>
+              </li>
+              <li class="maximize"><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i data-feather="maximize"></i></a></li>
+              <li class="profile-nav onhover-dropdown p-0 me-0">
+                <div class="d-flex profile-media">
+                  <img class="b-r-50" src="../assets/images/dashboard/profile.png" alt="">
+                  <div class="flex-grow-1">
+                    <span>Dudik Walter</span>
+                    <p class="mb-0 font-roboto">Admin <i class="middle fa fa-angle-down"></i></p>
+                  </div>
+                </div>
+                <ul class="profile-dropdown onhover-show-div">
+                  <li><a href="#"><i data-feather="user"></i><span>Account </span></a></li>
+                  <li><a href="#"><i data-feather="mail"></i><span>Inbox</span></a></li>
+                  <li><a href="#"><i data-feather="file-text"></i><span>Taskboard</span></a></li>
+                  <li><a href="#"><i data-feather="log-in"> </i><span>Log in</span></a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <script class="result-template" type="text/x-handlebars-template">
+            <div class="ProfileCard u-cf">                        
+            <div class="ProfileCard-avatar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-airplay m-0"><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"></path><polygon points="12 15 17 21 7 21 12 15"></polygon></svg></div>
+            <div class="ProfileCard-details">
+            <div class="ProfileCard-realName">{{name}}</div>
+            </div>
+            </div>
+          </script>
+          <script class="empty-template" type="text/x-handlebars-template"><div class="EmptyMessage">Your search turned up 0 results. This most likely means the backend is down, yikes!</div></script>
+        </div>
+      </div>
+      <!-- Page Header Ends -->
+      <!-- Page Body Start-->
+      <div class="page-body-wrapper">
+        <!-- Page Sidebar Start-->
+        <div class="sidebar-wrapper">
+          <div>
+            <div class="logo-wrapper">
+              <a href="#"><img class="img-fluid for-light hg-50" src="../assets/images/logo/logo.png" alt=""><img class="img-fluid for-dark hg-50" src="../assets/images/logo/logo-dark.png" alt=""></a>
+              <div class="back-btn"><i class="fa fa-angle-left"></i></div>
+              <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="align-left"> </i></div>
+            </div>
+            <div class="logo-icon-wrapper"><a href="#"><img class="img-fluid for-light" src="../assets/images/logo/logo-icon.png" alt=""><img class="img-fluid for-dark" src="../assets/images/logo/logo-icon-dark.png" alt=""></a></div>
+            <nav class="sidebar-main">
+              <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
+              <div id="sidebar-menu">
+                <ul class="sidebar-links" id="simple-bar">
+                  <li class="back-btn">
+                    <a href="#"><img class="img-fluid for-light" src="../assets/images/logo/logo-icon.png" alt=""><img class="img-fluid for-dark" src="../assets/images/logo/logo-icon-dark.png" alt=""></a>
+                    <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Olah Gerak Kapal</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="home"></i><span>Home</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Overview</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="pergerakan-kapal.html"><i data-feather="map"></i><span>Pergerakan Kapal</span></a>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="pergerakan-kapal-cuaca.html"><i data-feather="cloud"></i><span>Cuaca</span></a>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="pergerakan-kapal-perhitungan-bbm.html"><i data-feather="anchor"></i><span>Kapal & BBM</span></a>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="compass"></i><span>Pointing Kapal</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Sorting Kapal</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="map-pin"></i><span>Mastering Kapal</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Status Kapal</a></li>
+                      <li><a href="#">GPS</a></li>
+                      <li><a href="#">Selling Time & Quota BBM</a></li>
+                      <li><a href="#">Route Terdekat</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Repair & Maintenance</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="home"> </i><span>Home</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Overview</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="rm-kapal.html"><i data-feather="anchor"> </i><span>Kapal</span></a>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="rm-maintenance.html"><i data-feather="settings"> </i><span>Maintenance</span></a>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="bell"> </i><span>Notifikasi</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Notifikasi Baru</a></li>
+                      <li><a href="#">Notifikasi Terkirim</a></li>
+                      <li><a href="#">Notifikasi Dibaca</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="monitor"> </i><span>Monitoring & Repair</span></a>
+                    <ul class="sidebar-submenu">
+                      <li>
+                        <a href="#">Monitoring Request</a>
+                        <ul class="sidebar-submenu">
+                          <li><a href="#">Monitoring Maintenance</a></li>
+                          <li><a href="#">Monitoring Docking</a></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a href="#">Repair Estimasi</a>
+                        <ul class="sidebar-submenu">
+                          <li><a href="#">Pemeriksaan</a></li>
+                          <li><a href="#">Perkiraan Biaya</a></li>
+                          <li><a href="#">Estimasi Biaya Perbaikan</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="check-square"> </i><span>Approval</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Persetujuan 1x24 Jam</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="dollar-sign"> </i><span>Finance</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Kontrol Estimasi Biaya</a></li>
+                      <li><a href="#">Penjelasan Estimasi Repair List</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="settings"> </i><span>Pengaturan</span></a>
+                    <ul class="sidebar-submenu">
+                      <li>
+                        <a href="#">Koneksi RM & Pergerakan Kapal</a>
+                        <ul class="sidebar-submenu">
+                          <li><a href="#">Notifikasi Peringatan Maintenance</a></li>
+                          <li><a href="#">Lembar Kerja Jadwal Input (2.5/5 Tahun)</a></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a href="#">Kategori Maintenance (MK/Kapal)</a>
+                        <ul class="sidebar-submenu">
+                          <li><a href="#">Maintenance oleh MK</a></li>
+                          <li><a href="#">Maintenance oleh Kapal</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="message-square"> </i><span>Chat</span></a>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Logistic</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="logistic-home.html"><i data-feather="home"> </i><span>Dashboard</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="logistic-layout-gudang.html"><i data-feather="box"> </i><span>Layout Gudang</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="logistic-pengeluaran-barang.html"><i data-feather="box"> </i><span>Pengelolaan Barang</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="logistic-penerimaan-barang.html"><i data-feather="box"> </i><span>Penerimaan Barang</span></a>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Settings</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="edit"> </i><span>Roles</span></a></li>
+                  <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="sunrise"> </i><span>Documentation</span></a></li>
+                  <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="users"> </i><span>Support Ticket      </span></a></li>
+                </ul>
+                <div class="sidebar-img-section">
+                  <div class="sidebar-img-content">
+                    <img class="img-fluid" src="../assets/images/dashboard/upgrade/2.png" alt="">
+                    <h4>RB Control Hub <span style="font-size: 13px;"><br>Dashboard App</span></h4>
+                    <a class="btn btn-primary" href="#">Version 1.0</a>
+                  </div>
+                </div>
+              </div>
+              <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
+            </nav>
+          </div>
+        </div>
+        <!-- Page Sidebar Ends-->
+        <div class="page-body">
+          <div class="container-fluid">
+            <div class="page-title">
+              <div class="row">
+                <div class="col-6">
+                  <h3>Layout Gudang</h3>
+                </div>
+                <div class="col-6">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#"> <i data-feather="home"></i></a></li>
+                    <li class="breadcrumb-item">Logistic</li>
+                    <li class="breadcrumb-item">Layout Gudang</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Container-fluid starts-->
+            <div class="row">
+    
+              <div class="container col-10" style="padding: 20px;">
+              
+                <!-- Export Button and Search Field -->
+                <div class="d-flex justify-content-end mb3">
+                  <input type="text" id="searchItemInput" class="form-control mr-3" placeholder="Cari nama barang..." style="width: 200px; margin-right: 10px;">
+                  <button id="exportBtn" class="btn btn-outline-primary btn-icon">
+                    <i data-feather="file-text"></i> Export Excel
+                  </button>
+                </div>
+              
+                <!-- Section A -->
+                <div class="warehouse-section badge-primary" id="sectionA">
+                  <div class="section-title text-light">Section A</div>
+                  <div class="section-content">
+                    <div class="storage-location" data-item="Propeller" data-location="Location A1">
+                      <i data-feather="package" class="icon"></i>
+                      <h5>Location A1</h5>
+                      <p class="item-name">Propeller</p>
+                    </div>
+                    <div class="storage-location" data-item="Engine Oil Filter" data-location="Location A2">
+                      <i data-feather="package" class="icon"></i>
+                      <h5>Location A2</h5>
+                      <p class="item-name">Engine Oil Filter</p>
+                    </div>
+                    <div class="storage-location" data-item="Fuel Pump" data-location="Location A3">
+                      <i data-feather="package" class="icon"></i>
+                      <h5>Location A3</h5>
+                      <p class="item-name">Fuel Pump</p>
+                    </div>
+                  </div>
+                </div>
+              
+                <!-- Section B -->
+                <div class="warehouse-section badge-primary" id="sectionB">
+                  <div class="section-title text-light">Section B</div>
+                  <div class="section-content">
+                    <div class="storage-location" data-item="Hydraulic Hose" data-location="Location B1">
+                      <i data-feather="package" class="icon"></i>
+                      <h5>Location B1</h5>
+                      <p class="item-name">Hydraulic Hose</p>
+                    </div>
+                    <div class="storage-location" data-item="Water Pump" data-location="Location B2">
+                      <i data-feather="package" class="icon"></i>
+                      <h5>Location B2</h5>
+                      <p class="item-name">Water Pump</p>
+                    </div>
+                  </div>
+                </div>
+              
+                <!-- Section Details Card -->
+                <div id="sectionDetailsCard" class="card section-details-card d-none">
+                  <div class="card-header">
+                    <h4>Section Details</h4>
+                  </div>
+                  <div class="card-body">
+                    <div id="sectionSummary" class="section-summary">
+                      <!-- Section summary will be inserted here -->
+                    </div>
+                  </div>
+                </div>
+              
+                <!-- Item Details Card -->
+                <div id="itemDetailsCard" class="card item-details-card d-none">
+                  <div class="card-header">
+                    <h4>Item Details</h4>
+                  </div>
+                  <div class="card-body">
+                    <!-- Search Filter -->
+                    <input type="text" id="searchInput" class="form-control mb-3" placeholder="Search...">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>Nama Barang</th>
+                          <th>Jenis Lokasi</th>
+                          <th>Waktu Pembelian</th>
+                          <th>Waktu Keluar</th>
+                          <th>Status</th>
+                          <th>Kuantitas</th>
+                          <th>Harga</th>
+                        </tr>
+                      </thead>
+                      <tbody id="itemDetailsTableBody">
+                        <!-- Data will be inserted here -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+
+                
+              </div>
+
+
+            </div>
+          <!-- Container-fluid Ends-->
+        </div>
+        <!-- footer start-->
+        <footer class="footer">
+          <div class="container-fluid">
+            
+            <div class="row">
+              <div class="col-2 p-0 footer-left"></div>
+              <div class="col-10 p-0 footer-right">
+                <p class="mb-0">Copyright 2023 © RB Control Hub by LTI</p>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <!-- latest jquery-->
+    <script src="../assets/js/jquery-3.6.0.min.js"></script>
+    <script src="../assets/js/bootstrap/popper.min.js"></script>
+    <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+    <!-- feather icon js-->
+    <script src="../assets/js/icons/feather-icon/feather.min.js"></script>
+    <script src="../assets/js/icons/feather-icon/feather-icon.js"></script>
+    <script src="../assets/js/scrollbar/simplebar.js"></script>
+    <script src="../assets/js/scrollbar/custom.js"></script>
+    <!-- Sidebar jquery-->
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/sidebar-menu.js"></script>
+    <script src="../assets/js/chart/knob/knob.min.js"></script>
+    <script src="../assets/js/chart/knob/knob-chart.js"></script>
+    <script src="../assets/js/chart/apex-chart/apex-chart.js"></script>
+    <script src="../assets/js/chart/apex-chart/stock-prices.js"> </script>
+    <script src="../assets/js/prism/prism.min.js"></script>
+    <script src="../assets/js/clipboard/clipboard.min.js"></script>
+    <script src="../assets/js/custom-card/custom-card.js"></script>
+    <script src="../assets/js/notify/bootstrap-notify.min.js"></script>
+    <script src="../assets/js/dashboard/default.js"></script>
+    <script src="../assets/js/notify/index.js"></script>
+    <script src="../assets/js/typeahead/handlebars.js"></script>
+    <script src="../assets/js/typeahead/typeahead.bundle.js"></script>
+    <script src="../assets/js/typeahead/typeahead.custom.js"></script>
+    <script src="../assets/js/typeahead-search/handlebars.js"></script>
+    <script src="../assets/js/typeahead-search/typeahead-custom.js"></script>
+
+    <script src="../assets/js/chart/apex-chart/moment.min.js"></script>
+    <script src="../assets/js/counter/jquery.waypoints.min.js"></script>
+    <script src="../assets/js/counter/jquery.counterup.min.js"></script>
+    <script src="../assets/js/counter/counter-custom.js"></script>
+    <script src="../assets/js/chart-widget.js"></script>
+    <script src="../assets/js/tooltip-init.js"></script>
+    <script src="../assets/js/dashboard/dashboard_2.js"></script>
+
+    <!-- Theme js-->
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/theme-customizer/customizer.js"></script>
+  </body>
+</html>

@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../assets/images/favicon/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/images/favicon/favicon.png" type="image/x-icon">
+    <title>RB Control Hub</title>
+    <!-- Google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/font-awesome.css">
+    <!-- ico-font-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/icofont.css">
+    <!-- Themify icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/themify.css">
+    <!-- Flag icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/flag-icon.css">
+    <!-- Feather icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/feather-icon.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/scrollbar.css">
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/bootstrap.css">
+    <!-- App css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link id="color" rel="stylesheet" href="../assets/css/color-1.css" media="screen">
+    <!-- Responsive css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
+    <style>
+      #signatureCanvasNewItem, #signatureCanvasQC, #signatureCanvasApprove {
+      border: 1px solid #000;
+      width: 100%;
+      height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- tap on top starts-->
+    <div class="tap-top"><i data-feather="chevrons-up"></i></div>
+    <!-- tap on tap ends-->
+    <!-- Loader starts-->
+    <div class="loader-wrapper">
+      <div class="loader"></div>
+    </div>
+    <!-- Loader ends-->
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+      <!-- Page Header Start-->
+      <div class="page-header">
+        <div class="header-wrapper row m-0">
+          <form class="form-inline search-full col" action="#" method="get">
+            <div class="form-group w-100">
+              <div class="Typeahead Typeahead--twitterUsers">
+                <div class="u-posRelative">
+                  <input class="demo-input Typeahead-input form-control-plaintext w-100" type="text" placeholder="Search Koho .." name="q" title="" autofocus>
+                  <div class="spinner-border Typeahead-spinner" role="status"><span class="sr-only">Loading...</span></div>
+                  <i class="close-search" data-feather="x"></i>
+                </div>
+                <div class="Typeahead-menu"></div>
+              </div>
+            </div>
+          </form>
+          <div class="header-logo-wrapper col-auto p-0">
+            <div class="logo-wrapper"><a href="index.html"><img class="img-fluid for-light hg-50" src="../assets/images/logo/logo.png" alt=""><img class="img-fluid for-dark hg-50" src="../assets/images/logo/logo-dark.png" alt=""></a></div>
+            <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i></div>
+          </div>
+          <div class="left-header col horizontal-wrapper ps-0">
+            <div class="input-group">     
+              <input class="form-control" type="text" placeholder="Search Here........"><span class="input-group-text mobile-search"><i data-feather="search"></i></span>
+            </div>
+          </div>
+          <div class="nav-right col-6 pull-right right-header p-0">
+            <ul class="nav-menus">
+              <li>
+                <div class="mode"><i data-feather="moon"></i></div>
+              </li>
+              <li class="onhover-dropdown">
+                <div class="notification-box"><i data-feather="star"></i></div>
+                <div class="onhover-show-div bookmark-flip">
+                  <div class="flip-card">
+                    <div class="flip-card-inner">
+                      <div class="front">
+                        <ul class="droplet-dropdown bookmark-dropdown">
+                          <li class="gradient-primary">
+                            <i data-feather="star"></i>
+                            <h3 class="mb-0">Bookmark</h3>
+                          </li>
+                          <li>
+                            <div class="row">
+                              <div class="col-4 text-center"><a href="file-manager.html"><i data-feather="file-text"></i></a></div>
+                              <div class="col-4 text-center"><a href="general-widget.html"><i data-feather="activity"></i></a></div>
+                              <div class="col-4 text-center"><a href="user-profile.html"><i data-feather="users"></i></a></div>
+                              <div class="col-4 text-center"><a href="clipboard.html"><i data-feather="clipboard"></i></a></div>
+                              <div class="col-4 text-center"><a href="to-do.html"><i data-feather="anchor"></i></a></div>
+                              <div class="col-4 text-center"><a href="internationalization.html"><i data-feather="settings"></i></a></div>
+                            </div>
+                          </li>
+                          <li class="text-center">
+                            <button class="flip-btn" id="flip-btn">Add New Bookmark</button>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="back">
+                        <ul>
+                          <li>
+                            <div class="droplet-dropdown bookmark-dropdown flip-back-content">
+                              <input type="text" placeholder="search...">
+                            </div>
+                          </li>
+                          <li class="pb-0">
+                            <button class="d-block flip-back" id="flip-back">Back          </button>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="onhover-dropdown">
+                <div class="notification-box"><i data-feather="bell"></i><span class="badge rounded-pill badge-primary">4                                </span></div>
+                <ul class="notification-dropdown onhover-show-div">
+                  <li>
+                    <i data-feather="bell">            </i>
+                    <h3 class="mb-0">Notifications</h3>
+                  </li>
+                  <li>
+                    <a href="email_read.html">
+                      <p><i class="fa fa-circle-o me-3 font-primary"> </i>Delivery processing <span class="pull-right">10 min.</span></p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="email_read.html">
+                      <p><i class="fa fa-circle-o me-3 font-success"></i>Order Complete<span class="pull-right">1 hr</span></p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="email_read.html">
+                      <p><i class="fa fa-circle-o me-3 font-info"></i>Tickets Generated<span class="pull-right">3 hr</span></p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="email_read.html">
+                      <p><i class="fa fa-circle-o me-3 font-danger"></i>Delivery Complete<span class="pull-right">6 hr</span></p>
+                    </a>
+                  </li>
+                  <li><a class="btn btn-primary" href="email_read.html">Check all notification</a></li>
+                </ul>
+              </li>
+              <li class="onhover-dropdown">
+                <i data-feather="message-square"></i>
+                <ul class="chat-dropdown onhover-show-div">
+                  <li>
+                    <i data-feather="message-square"></i>
+                    <h3 class="mb-0">Message Box</h3>
+                  </li>
+                  <li>
+                    <div class="d-flex">
+                      <img class="img-fluid rounded-circle me-3" src="../assets/images/user/6.jpg" alt="">
+                      <div class="status-circle online"></div>
+                      <div class="flex-grow-1">
+                        <a href="user-profile.html">
+                          <span>Ain Chavez</span>
+                          <p>Do you want to go see movie?</p>
+                        </a>
+                      </div>
+                      <p class="f-12 font-success">2 mins ago</p>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="d-flex">
+                      <img class="img-fluid rounded-circle me-3" src="../assets/images/user/1.jpg" alt="">
+                      <div class="status-circle online"></div>
+                      <div class="flex-grow-1">
+                        <a href="user-profile.html">
+                          <span>Erica Hughes</span>
+                          <p>Thank you for rating us.</p>
+                        </a>
+                      </div>
+                      <p class="f-12 font-success">5 mins ago</p>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="d-flex">
+                      <img class="img-fluid rounded-circle me-3" src="../assets/images/user/7.jpg" alt="">
+                      <div class="status-circle offline"></div>
+                      <div class="flex-grow-1">
+                        <a href="user-profile.html">
+                          <span>Kori Thomas</span>
+                          <p>What`s the project report update?</p>
+                        </a>
+                      </div>
+                      <p class="f-12 font-danger">9 mins ago</p>
+                    </div>
+                  </li>
+                  <li class="text-center"> <a class="btn btn-primary" href="chat.html">View All     </a></li>
+                </ul>
+              </li>
+              <li class="maximize"><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i data-feather="maximize"></i></a></li>
+              <li class="profile-nav onhover-dropdown p-0 me-0">
+                <div class="d-flex profile-media">
+                  <img class="b-r-50" src="../assets/images/dashboard/profile.png" alt="">
+                  <div class="flex-grow-1">
+                    <span>Dudik Walter</span>
+                    <p class="mb-0 font-roboto">Admin <i class="middle fa fa-angle-down"></i></p>
+                  </div>
+                </div>
+                <ul class="profile-dropdown onhover-show-div">
+                  <li><a href="user-profile.html"><i data-feather="user"></i><span>Account </span></a></li>
+                  <li><a href="email_inbox.html"><i data-feather="mail"></i><span>Inbox</span></a></li>
+                  <li><a href="kanban.html"><i data-feather="file-text"></i><span>Taskboard</span></a></li>
+                  <li><a href="login.html"><i data-feather="log-in"> </i><span>Log in</span></a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <script class="result-template" type="text/x-handlebars-template">
+            <div class="ProfileCard u-cf">                        
+            <div class="ProfileCard-avatar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-airplay m-0"><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"></path><polygon points="12 15 17 21 7 21 12 15"></polygon></svg></div>
+            <div class="ProfileCard-details">
+            <div class="ProfileCard-realName">{{name}}</div>
+            </div>
+            </div>
+          </script>
+          <script class="empty-template" type="text/x-handlebars-template"><div class="EmptyMessage">Your search turned up 0 results. This most likely means the backend is down, yikes!</div></script>
+        </div>
+      </div>
+      <!-- Page Header Ends                              -->
+      <!-- Page Body Start-->
+      <div class="page-body-wrapper">
+        <!-- Page Sidebar Start-->
+        <div class="sidebar-wrapper">
+          <div>
+            <div class="logo-wrapper">
+              <a href="#"><img class="img-fluid for-light hg-50" src="../assets/images/logo/logo.png" alt=""><img class="img-fluid for-dark hg-50" src="../assets/images/logo/logo-dark.png" alt=""></a>
+              <div class="back-btn"><i class="fa fa-angle-left"></i></div>
+              <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="align-left"> </i></div>
+            </div>
+            <div class="logo-icon-wrapper"><a href="#"><img class="img-fluid for-light" src="../assets/images/logo/logo-icon.png" alt=""><img class="img-fluid for-dark" src="../assets/images/logo/logo-icon-dark.png" alt=""></a></div>
+            <nav class="sidebar-main">
+              <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
+              <div id="sidebar-menu">
+                <ul class="sidebar-links" id="simple-bar">
+                  <li class="back-btn">
+                    <a href="#"><img class="img-fluid for-light" src="../assets/images/logo/logo-icon.png" alt=""><img class="img-fluid for-dark" src="../assets/images/logo/logo-icon-dark.png" alt=""></a>
+                    <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Olah Gerak Kapal</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="home"></i><span>Home</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Overview</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="pergerakan-kapal.html"><i data-feather="map"></i><span>Pergerakan Kapal</span></a>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="pergerakan-kapal-cuaca.html"><i data-feather="cloud"></i><span>Cuaca</span></a>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="pergerakan-kapal-perhitungan-bbm.html"><i data-feather="anchor"></i><span>Kapal & BBM</span></a>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="compass"></i><span>Pointing Kapal</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Sorting Kapal</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="map-pin"></i><span>Mastering Kapal</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Status Kapal</a></li>
+                      <li><a href="#">GPS</a></li>
+                      <li><a href="#">Selling Time & Quota BBM</a></li>
+                      <li><a href="#">Route Terdekat</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Repair & Maintenance</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="home"> </i><span>Home</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Overview</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="rm-kapal.html"><i data-feather="anchor"> </i><span>Kapal</span></a>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="rm-maintenance.html"><i data-feather="settings"> </i><span>Maintenance</span></a>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="bell"> </i><span>Notifikasi</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Notifikasi Baru</a></li>
+                      <li><a href="#">Notifikasi Terkirim</a></li>
+                      <li><a href="#">Notifikasi Dibaca</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="monitor"> </i><span>Monitoring & Repair</span></a>
+                    <ul class="sidebar-submenu">
+                      <li>
+                        <a href="#">Monitoring Request</a>
+                        <ul class="sidebar-submenu">
+                          <li><a href="#">Monitoring Maintenance</a></li>
+                          <li><a href="#">Monitoring Docking</a></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a href="#">Repair Estimasi</a>
+                        <ul class="sidebar-submenu">
+                          <li><a href="#">Pemeriksaan</a></li>
+                          <li><a href="#">Perkiraan Biaya</a></li>
+                          <li><a href="#">Estimasi Biaya Perbaikan</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="check-square"> </i><span>Approval</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Persetujuan 1x24 Jam</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="dollar-sign"> </i><span>Finance</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Kontrol Estimasi Biaya</a></li>
+                      <li><a href="#">Penjelasan Estimasi Repair List</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="settings"> </i><span>Pengaturan</span></a>
+                    <ul class="sidebar-submenu">
+                      <li>
+                        <a href="#">Koneksi RM & Pergerakan Kapal</a>
+                        <ul class="sidebar-submenu">
+                          <li><a href="#">Notifikasi Peringatan Maintenance</a></li>
+                          <li><a href="#">Lembar Kerja Jadwal Input (2.5/5 Tahun)</a></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a href="#">Kategori Maintenance (MK/Kapal)</a>
+                        <ul class="sidebar-submenu">
+                          <li><a href="#">Maintenance oleh MK</a></li>
+                          <li><a href="#">Maintenance oleh Kapal</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="message-square"> </i><span>Chat</span></a>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Logistic</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="logistic-home.html"><i data-feather="home"> </i><span>Dashboard</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="logistic-layout-gudang.html"><i data-feather="box"> </i><span>Layout Gudang</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="logistic-pengeluaran-barang.html"><i data-feather="box"> </i><span>Pengelolaan Barang</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="logistic-penerimaan-barang.html"><i data-feather="box"> </i><span>Penerimaan Barang</span></a>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Settings</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="edit"> </i><span>Roles</span></a></li>
+                  <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="sunrise"> </i><span>Documentation</span></a></li>
+                  <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="users"> </i><span>Support Ticket      </span></a></li>
+                </ul>
+                <div class="sidebar-img-section">
+                  <div class="sidebar-img-content">
+                    <img class="img-fluid" src="../assets/images/dashboard/upgrade/2.png" alt="">
+                    <h4>RB Control Hub <span style="font-size: 13px;"><br>Dashboard App</span></h4>
+                    <a class="btn btn-primary" href="#">Version 1.0</a>
+                  </div>
+                </div>
+              </div>
+              <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
+            </nav>
+          </div>
+        </div>
+        <!-- Page Sidebar Ends-->
+        <div class="page-body">
+          <div class="container-fluid">
+            <div class="page-title">
+              <div class="row">
+                <div class="col-6">
+                  <h3>Penerimaan Barang</h3>
+                </div>
+                <div class="col-6">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">                                       <i data-feather="home"></i></a></li>
+                    <li class="breadcrumb-item">Logistic</li>
+                    <li class="breadcrumb-item active">Penerimaan Barang</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Container-fluid starts-->
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="card-deck">
+                  <!-- Modal untuk menampilkan dokumen -->
+                  <div class="modal fade" id="documentModal" tabindex="-1" role="dialog" aria-labelledby="documentModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="documentModalLabel" style="text-align: center;">Dokumen Lampiran</h5>
+                        </div>
+                        <div class="modal-body" style="text-align: center;">
+                          <img id="modalDocumentImage" src="" class="img-fluid" alt="Lampiran">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Penerimaan Baru -->
+                  <div class="card">
+                    <div class="card-header badge-primary">
+                      <h3 class="card-title text-light mb-1">Penerimaan Baru</h3>
+                      <p class="text-light mb-1">Detail barang yang baru diterima.</p>
+                    </div>
+                    <div class="card-body">
+                      <form id="newItemForm">
+                        <div class="form-group">
+                          <label for="newItemName">Nama Barang</label>
+                          <input type="text" class="form-control" id="newItemName" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="newItemPurchaseTime">Waktu Pembelian</label>
+                          <input type="datetime-local" class="form-control" id="newItemPurchaseTime" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="newItemStatus">Status</label>
+                          <select class="form-control" id="newItemStatus" required>
+                            <option value="In Stock">In Stock</option>
+                            <option value="Out of Stock">Out of Stock</option>
+                            <option value="Reserved">Reserved</option>
+                            <option value="Damage">Damage</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="newItemQuantity">Jumlah Barang</label>
+                          <input type="number" class="form-control" id="newItemQuantity" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="newItemPrice">Harga</label>
+                          <input type="number" class="form-control" id="newItemPrice" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="itemLocation">Lokasi</label>
+                          <select class="form-control" id="itemLocation" required>
+                            <option value="Section A">Section A</option>
+                            <option value="Location A1">Location A1</option>
+                            <option value="Location A2">Location A2</option>
+                            <option value="Location A3">Location A3</option>
+                            <option value="Section B">Section B</option>
+                            <option value="Location B1">Location B1</option>
+                            <option value="Location B2">Location B2</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="newItemDocument">Lampiran Dokumen Penerimaan</label>
+                          <input type="file" class="form-control-file" id="newItemDocument" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="newItemResponsible">Penanggung Jawab</label>
+                          <select class="form-control" id="newItemResponsible" required>
+                            <option value="">Pilih Penanggung Jawab</option>
+                            <option value="John Doe">John Doe</option>
+                            <option value="Jane Doe">Jane Doe</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="signatureCanvasNewItem">Tanda Tangan</label>
+                          <canvas id="signatureCanvasNewItem" style="border: 1px solid #edecf2; border-radius: 10px; width: 100%;"></canvas>
+                          <input type="hidden" id="signatureImageNewItem" name="signatureImageNewItem">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </form>
+                    </div>
+                  </div>
+                  <!-- QC Barang -->
+                  <div class="card">
+                    <div class="card-header badge-primary">
+                      <h3 class="card-title text-light mb-1">QC Barang</h3>
+                      <p class="text-light mb-1">Kontrol kualitas pada barang yang diterima.</p>
+                    </div>
+                    <div class="card-body">
+                      <form id="qcItemForm">
+                        <div class="form-group">
+                          <label for="qcItemQuality">Kualitas Barang</label>
+                          <select class="form-control" id="qcItemQuality" required>
+                            <option value="">Pilih Kualitas</option>
+                            <option value="Baik">Baik</option>
+                            <option value="Tidak Baik">Tidak Baik</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="qcItemResponsible">Penanggung Jawab</label>
+                          <select class="form-control" id="qcItemResponsible" required>
+                            <option value="">Pilih Penanggung Jawab</option>
+                            <option value="John Doe">John Doe</option>
+                            <option value="Jane Doe">Jane Doe</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="qcItemDocument">Lampiran Dokumen QC</label><br>
+                          <input type="file" class="form-control-file" id="qcItemDocument" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="signatureCanvasQC">Tanda Tangan</label>
+                          <canvas id="signatureCanvasQC" style="border: 1px solid #edecf2; border-radius: 10px; width: 100%;"></canvas>
+                          <input type="hidden" id="signatureImageQC" name="signatureImageQC">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </form>
+                    </div>
+                  </div>
+                  <!-- Approve Masuk Gudang -->
+                  <div class="card">
+                    <div class="card-header badge-primary">
+                      <h3 class="card-title text-light mb-1">Approve Masuk Gudang</h3>
+                      <p class="text-light mb-1">Persetujuan untuk penyimpanan barang ke dalam gudang.</p>
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-text mb-4">Input harus dilakukan maksimal dalam 1x24 jam setelah penerimaan.</h5>
+                      <form id="approveItemForm">
+                        <div class="form-group">
+                          <label for="approveItemDate">Tanggal Input</label>
+                          <input type="date" class="form-control" id="approveItemDate" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="approveItemResponsible">Penanggung Jawab</label>
+                          <select class="form-control" id="approveItemResponsible" required>
+                            <option value="">Pilih Penanggung Jawab</option>
+                            <option value="John Doe">John Doe</option>
+                            <option value="Jane Doe">Jane Doe</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="approveItemDocument">Lampiran Dokumen Approve</label>
+                          <input type="file" class="form-control-file" id="approveItemDocument" accept="image/*, .pdf" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="signatureCanvasApprove">Tanda Tangan</label>
+                          <canvas id="signatureCanvasApprove" style="border: 1px solid #edecf2; border-radius: 10px; width: 100%;"></canvas>
+                          <input type="hidden" id="signatureImageApprove" name="signatureImageApprove">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Tabel Hasil Penerimaan Barang -->
+              <div class="col-md-8">
+                <div class="card">
+                  <div class="card-header badge-primary">
+                    <h3 class="card-title text-light mb-1">Tabel Hasil Penerimaan Barang</h3>
+                  </div>
+                  <div class="card-body">
+                    <table class="table table-bordered table-striped">
+                      <thead class="thead-dark">
+                        <tr>
+                          <th>No</th>
+                          <th>Nama Barang</th>
+                          <th>Waktu Pembelian</th>
+                          <th>Status</th>
+                          <th>Jumlah Barang</th>
+                          <th>Harga</th>
+                          <th>Lokasi</th>
+                          <th>Penanggung Jawab</th>
+                          <th>Keterangan</th>
+                          <th>Masuk Gudang</th>
+                          <th>Dokumen</th>
+                          <th>Tanda Tangan</th>
+                        </tr>
+                      </thead>
+                      <tbody id="tableBody">
+                        <!-- Data akan dimasukkan ke sini -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Container-fluid Ends-->
+        </div>
+        <!-- footer start-->
+        <footer class="footer">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-2 p-0 footer-left"></div>
+              <div class="col-10 p-0 footer-right">
+                <p class="mb-0">Copyright 2023 © RB Control Hub by LTI</p>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+      $(document).ready(function () {
+          let dataBarang = [];
+          let noUrut = 1;
+      
+          function tambahDataTabel(data, nomor) {
+              $('#tableBody').append(`
+                  <tr>
+                      <td>${nomor !== undefined ? nomor : ''}</td>
+                      <td>${data.nama}</td>
+                      <td>${data.waktuPembelian}</td>
+                      <td>${data.status}</td>
+                      <td>${data.jumlah}</td>
+                      <td>${data.harga}</td>
+                      <td>${data.lokasi}</td>
+                      <td>${data.penanggungJawab}</td>
+                      <td>${data.keterangan}</td>
+                      <td>${data.approveTime !== undefined ? data.approveTime : '-'}</td>
+                      <td><a href="#" class="view-document" data-doc="${data.lampiran}">Lihat Dokumen</a></td>
+                      <td><img src="${data.tandaTangan}" alt="Tanda Tangan" width="100"></td>
+                  </tr>
+              `);
+      
+              $('.view-document').off('click').on('click', function (e) {
+                  e.preventDefault();
+                  const docUrl = $(this).data('doc');
+                  $('#modalDocumentImage').attr('src', docUrl);
+                  $('#documentModal').modal('show');
+              });
+          }
+      
+          function setupSignaturePad(canvasId) {
+              const canvas = document.getElementById(canvasId);
+              const context = canvas.getContext('2d');
+              let drawing = false;
+      
+              canvas.addEventListener('mousedown', function (e) {
+                  drawing = true;
+                  context.beginPath();
+                  context.moveTo(e.offsetX, e.offsetY);
+              });
+      
+              canvas.addEventListener('mousemove', function (e) {
+                  if (drawing) {
+                      context.lineTo(e.offsetX, e.offsetY);
+                      context.stroke();
+                  }
+              });
+      
+              canvas.addEventListener('mouseup', function () {
+                  drawing = false;
+              });
+          }
+      
+          setupSignaturePad('signatureCanvasNewItem');
+          setupSignaturePad('signatureCanvasQC');
+          setupSignaturePad('signatureCanvasApprove');
+      
+          $('#newItemForm').submit(function (e) {
+              e.preventDefault();
+              const newItemName = $('#newItemName').val();
+              const newItemPurchaseTime = $('#newItemPurchaseTime').val();
+              const newItemStatus = $('#newItemStatus').val();
+              const newItemQuantity = $('#newItemQuantity').val();
+              const newItemPrice = $('#newItemPrice').val();
+              const itemLocation = $('#itemLocation').val();
+              const newItemResponsible = $('#newItemResponsible').val();
+              const newItemDocument = $('#newItemDocument')[0].files[0];
+              const signatureImageNewItem = document.getElementById('signatureCanvasNewItem').toDataURL();
+      
+              if (newItemDocument) {
+                  const reader = new FileReader();
+                  reader.onloadend = function () {
+                      const documentUrl = reader.result;
+                      dataBarang.push({
+                          nama: newItemName,
+                          waktuPembelian: newItemPurchaseTime,
+                          status: newItemStatus,
+                          jumlah: newItemQuantity,
+                          harga: newItemPrice,
+                          lokasi: itemLocation,
+                          penanggungJawab: newItemResponsible,
+                          keterangan: 'Penerimaan Baru',
+                          lampiran: documentUrl,
+                          tandaTangan: signatureImageNewItem
+                      });
+      
+                      tambahDataTabel(dataBarang[dataBarang.length - 1], noUrut++);
+      
+                      $('#newItemForm')[0].reset();
+                      document.getElementById('signatureCanvasNewItem').getContext('2d').clearRect(0, 0, document.getElementById('signatureCanvasNewItem').width, document.getElementById('signatureCanvasNewItem').height);
+                  }
+                  reader.readAsDataURL(newItemDocument);
+              }
+          });
+      
+          $('#qcItemForm').submit(function (e) {
+              e.preventDefault();
+              const qcItemQuality = $('#qcItemQuality').val();
+              const qcItemResponsible = $('#qcItemResponsible').val();
+              const qcItemDocument = $('#qcItemDocument')[0].files[0];
+              const signatureImageQC = document.getElementById('signatureCanvasQC').toDataURL();
+      
+              if (qcItemDocument) {
+                  const reader = new FileReader();
+                  reader.onloadend = function () {
+                      const documentUrl = reader.result;
+                      dataBarang.push({
+                          nama: '',
+                          waktuPembelian: '',
+                          status: '',
+                          jumlah: '',
+                          harga: '',
+                          lokasi: '',
+                          penanggungJawab: qcItemResponsible,
+                          keterangan: `QC Barang - ${qcItemQuality}`,
+                          lampiran: documentUrl,
+                          tandaTangan: signatureImageQC
+                      });
+      
+                      tambahDataTabel(dataBarang[dataBarang.length - 1]);
+      
+                      $('#qcItemForm')[0].reset();
+                      document.getElementById('signatureCanvasQC').getContext('2d').clearRect(0, 0, document.getElementById('signatureCanvasQC').width, document.getElementById('signatureCanvasQC').height);
+                  }
+                  reader.readAsDataURL(qcItemDocument);
+              }
+          });
+      
+          $('#approveItemForm').submit(function (e) {
+            e.preventDefault();
+            const approveItemDate = $('#approveItemDate').val();
+            const approveItemResponsible = $('#approveItemResponsible').val();
+            const signatureImageApprove = document.getElementById('signatureCanvasApprove').toDataURL();
+            const approveItemDocument = $('#approveItemDocument')[0].files[0];
+      
+            if (approveItemDocument) {
+                const reader = new FileReader();
+                reader.onloadend = function () {
+                    const documentUrl = reader.result;
+                    dataBarang.push({
+                        nama: '',
+                        waktuPembelian: '',
+                        status: '',
+                        jumlah: '',
+                        harga: '',
+                        lokasi: '',
+                        penanggungJawab: approveItemResponsible,
+                        keterangan: 'Approve Masuk Gudang',
+                        lampiran: documentUrl,
+                        tandaTangan: signatureImageApprove,
+                        approveTime: approveItemDate
+                    });
+      
+                    tambahDataTabel(dataBarang[dataBarang.length - 1]);
+      
+                    $('#approveItemForm')[0].reset();
+                    document.getElementById('signatureCanvasApprove').getContext('2d').clearRect(0, 0, document.getElementById('signatureCanvasApprove').width, document.getElementById('signatureCanvasApprove').height);
+                }
+                reader.readAsDataURL(approveItemDocument);
+            } else {
+                // Jika tidak ada lampiran, tambahkan data tanpa lampiran
+                dataBarang.push({
+                    nama: '',
+                    waktuPembelian: '',
+                    status: '',
+                    jumlah: '',
+                    harga: '',
+                    lokasi: '',
+                    penanggungJawab: approveItemResponsible,
+                    keterangan: 'Approve Masuk Gudang',
+                    lampiran: '', // Lampiran kosong
+                    tandaTangan: signatureImageApprove,
+                    approveTime: approveItemDate
+                });
+      
+                tambahDataTabel(dataBarang[dataBarang.length - 1]);
+                $('#approveItemForm')[0].reset();
+                document.getElementById('signatureCanvasApprove').getContext('2d').clearRect(0, 0, document.getElementById('signatureCanvasApprove').width, document.getElementById('signatureCanvasApprove').height);
+            }
+          });
+      });
+    </script>
+    <!-- latest jquery-->
+    <script src="../assets/js/jquery-3.6.0.min.js"></script>
+    <script src="../assets/js/bootstrap/popper.min.js"></script>
+    <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+    <!-- feather icon js-->
+    <script src="../assets/js/icons/feather-icon/feather.min.js"></script>
+    <script src="../assets/js/icons/feather-icon/feather-icon.js"></script>
+    <script src="../assets/js/scrollbar/simplebar.js"></script>
+    <script src="../assets/js/scrollbar/custom.js"></script>
+    <!-- Sidebar jquery-->
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/sidebar-menu.js"></script>
+    <script src="../assets/js/tooltip-init.js"></script>
+    <!-- Theme js-->
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/theme-customizer/customizer.js"></script>
+  </body>
+</html>

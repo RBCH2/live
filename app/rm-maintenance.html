@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../assets/images/favicon/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/images/favicon/favicon.png" type="image/x-icon">
+    <title>RB Control Hub</title>
+    <!-- Google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/font-awesome.css">
+    <!-- ico-font-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/icofont.css">
+    <!-- Themify icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/themify.css">
+    <!-- Flag icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/flag-icon.css">
+    <!-- Feather icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/feather-icon.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/scrollbar.css">
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/bootstrap.css">
+    <!-- App css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link id="color" rel="stylesheet" href="../assets/css/color-1.css" media="screen">
+    <!-- Responsive css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      body.unique-body {
+        background-color: #f8f9fa;
+        color: #495057;
+        font-family: Arial, sans-serif;
+      }
+      .unique-card {
+        border: none;
+        border-radius: 1rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .unique-card-header {
+        font-size: 1rem;
+        font-weight: bold;
+      }
+      .unique-card-body {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+      .unique-chart-container {
+        position: relative;
+        height: 300px;
+      }
+      .unique-map-container {
+        height: 300px;
+        background-color: #eef2f5;
+        border-radius: 1rem;
+      }
+      .unique-button {
+        margin-top: 10px;
+      }
+      .unique-table {
+        margin-top: 20px;
+        display: none;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <!-- tap on top starts-->
+    <div class="tap-top"><i data-feather="chevrons-up"></i></div>
+    <!-- tap on tap ends-->
+    <!-- Loader starts-->
+    <div class="loader-wrapper">
+      <div class="loader"></div>
+    </div>
+    <!-- Loader ends-->
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+      <!-- Page Header Start-->
+      <div class="page-header">
+        <div class="header-wrapper row m-0">
+          <form class="form-inline search-full col" action="#" method="get">
+            <div class="form-group w-100">
+              <div class="Typeahead Typeahead--twitterUsers">
+                <div class="u-posRelative">
+                  <input class="demo-input Typeahead-input form-control-plaintext w-100" type="text" placeholder="Search Koho .." name="q" title="" autofocus>
+                  <div class="spinner-border Typeahead-spinner" role="status"><span class="sr-only">Loading...</span></div>
+                  <i class="close-search" data-feather="x"></i>
+                </div>
+                <div class="Typeahead-menu"></div>
+              </div>
+            </div>
+          </form>
+          <div class="header-logo-wrapper col-auto p-0">
+            <div class="logo-wrapper"><a href="index.html"><img class="img-fluid for-light hg-50" src="../assets/images/logo/logo.png" alt=""><img class="img-fluid for-dark hg-50" src="../assets/images/logo/logo-dark.png" alt=""></a></div>
+            <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i></div>
+          </div>
+          <div class="left-header col horizontal-wrapper ps-0">
+            <div class="input-group">     
+              <input class="form-control" type="text" placeholder="Search Here........"><span class="input-group-text mobile-search"><i data-feather="search"></i></span>
+            </div>
+          </div>
+          <div class="nav-right col-6 pull-right right-header p-0">
+            <ul class="nav-menus">
+              <li>
+                <div class="mode"><i data-feather="moon"></i></div>
+              </li>
+              <li class="onhover-dropdown">
+                <div class="notification-box"><i data-feather="star"></i></div>
+                <div class="onhover-show-div bookmark-flip">
+                  <div class="flip-card">
+                    <div class="flip-card-inner">
+                      <div class="front">
+                        <ul class="droplet-dropdown bookmark-dropdown">
+                          <li class="gradient-primary">
+                            <i data-feather="star"></i>
+                            <h3 class="mb-0">Bookmark</h3>
+                          </li>
+                          <li>
+                            <div class="row">
+                              <div class="col-4 text-center"><a href="file-manager.html"><i data-feather="file-text"></i></a></div>
+                              <div class="col-4 text-center"><a href="general-widget.html"><i data-feather="activity"></i></a></div>
+                              <div class="col-4 text-center"><a href="user-profile.html"><i data-feather="users"></i></a></div>
+                              <div class="col-4 text-center"><a href="clipboard.html"><i data-feather="clipboard"></i></a></div>
+                              <div class="col-4 text-center"><a href="to-do.html"><i data-feather="anchor"></i></a></div>
+                              <div class="col-4 text-center"><a href="internationalization.html"><i data-feather="settings"></i></a></div>
+                            </div>
+                          </li>
+                          <li class="text-center">
+                            <button class="flip-btn" id="flip-btn">Add New Bookmark</button>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="back">
+                        <ul>
+                          <li>
+                            <div class="droplet-dropdown bookmark-dropdown flip-back-content">
+                              <input type="text" placeholder="search...">
+                            </div>
+                          </li>
+                          <li class="pb-0">
+                            <button class="d-block flip-back" id="flip-back">Back          </button>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="onhover-dropdown">
+                <div class="notification-box"><i data-feather="bell"></i><span class="badge rounded-pill badge-primary">4                                </span></div>
+                <ul class="notification-dropdown onhover-show-div">
+                  <li>
+                    <i data-feather="bell">            </i>
+                    <h3 class="mb-0">Notifications</h3>
+                  </li>
+                  <li>
+                    <a href="email_read.html">
+                      <p><i class="fa fa-circle-o me-3 font-primary"> </i>Delivery processing <span class="pull-right">10 min.</span></p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="email_read.html">
+                      <p><i class="fa fa-circle-o me-3 font-success"></i>Order Complete<span class="pull-right">1 hr</span></p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="email_read.html">
+                      <p><i class="fa fa-circle-o me-3 font-info"></i>Tickets Generated<span class="pull-right">3 hr</span></p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="email_read.html">
+                      <p><i class="fa fa-circle-o me-3 font-danger"></i>Delivery Complete<span class="pull-right">6 hr</span></p>
+                    </a>
+                  </li>
+                  <li><a class="btn btn-primary" href="email_read.html">Check all notification</a></li>
+                </ul>
+              </li>
+              <li class="onhover-dropdown">
+                <i data-feather="message-square"></i>
+                <ul class="chat-dropdown onhover-show-div">
+                  <li>
+                    <i data-feather="message-square"></i>
+                    <h3 class="mb-0">Message Box</h3>
+                  </li>
+                  <li>
+                    <div class="d-flex">
+                      <img class="img-fluid rounded-circle me-3" src="../assets/images/user/6.jpg" alt="">
+                      <div class="status-circle online"></div>
+                      <div class="flex-grow-1">
+                        <a href="user-profile.html">
+                          <span>Ain Chavez</span>
+                          <p>Do you want to go see movie?</p>
+                        </a>
+                      </div>
+                      <p class="f-12 font-success">2 mins ago</p>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="d-flex">
+                      <img class="img-fluid rounded-circle me-3" src="../assets/images/user/1.jpg" alt="">
+                      <div class="status-circle online"></div>
+                      <div class="flex-grow-1">
+                        <a href="user-profile.html">
+                          <span>Erica Hughes</span>
+                          <p>Thank you for rating us.</p>
+                        </a>
+                      </div>
+                      <p class="f-12 font-success">5 mins ago</p>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="d-flex">
+                      <img class="img-fluid rounded-circle me-3" src="../assets/images/user/7.jpg" alt="">
+                      <div class="status-circle offline"></div>
+                      <div class="flex-grow-1">
+                        <a href="user-profile.html">
+                          <span>Kori Thomas</span>
+                          <p>What`s the project report update?</p>
+                        </a>
+                      </div>
+                      <p class="f-12 font-danger">9 mins ago</p>
+                    </div>
+                  </li>
+                  <li class="text-center"> <a class="btn btn-primary" href="chat.html">View All     </a></li>
+                </ul>
+              </li>
+              <li class="maximize"><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i data-feather="maximize"></i></a></li>
+              <li class="profile-nav onhover-dropdown p-0 me-0">
+                <div class="d-flex profile-media">
+                  <img class="b-r-50" src="../assets/images/dashboard/profile.png" alt="">
+                  <div class="flex-grow-1">
+                    <span>Dudik Walter</span>
+                    <p class="mb-0 font-roboto">Admin <i class="middle fa fa-angle-down"></i></p>
+                  </div>
+                </div>
+                <ul class="profile-dropdown onhover-show-div">
+                  <li><a href="user-profile.html"><i data-feather="user"></i><span>Account </span></a></li>
+                  <li><a href="email_inbox.html"><i data-feather="mail"></i><span>Inbox</span></a></li>
+                  <li><a href="kanban.html"><i data-feather="file-text"></i><span>Taskboard</span></a></li>
+                  <li><a href="login.html"><i data-feather="log-in"> </i><span>Log in</span></a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <script class="result-template" type="text/x-handlebars-template">
+            <div class="ProfileCard u-cf">                        
+            <div class="ProfileCard-avatar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-airplay m-0"><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"></path><polygon points="12 15 17 21 7 21 12 15"></polygon></svg></div>
+            <div class="ProfileCard-details">
+            <div class="ProfileCard-realName">{{name}}</div>
+            </div>
+            </div>
+          </script>
+          <script class="empty-template" type="text/x-handlebars-template"><div class="EmptyMessage">Your search turned up 0 results. This most likely means the backend is down, yikes!</div></script>
+        </div>
+      </div>
+      <!-- Page Header Ends                              -->
+      <!-- Page Body Start-->
+      <div class="page-body-wrapper">
+        <!-- Page Sidebar Start-->
+        <div class="sidebar-wrapper">
+          <div>
+            <div class="logo-wrapper">
+              <a href="#"><img class="img-fluid for-light hg-50" src="../assets/images/logo/logo.png" alt=""><img class="img-fluid for-dark hg-50" src="../assets/images/logo/logo-dark.png" alt=""></a>
+              <div class="back-btn"><i class="fa fa-angle-left"></i></div>
+              <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="align-left"> </i></div>
+            </div>
+            <div class="logo-icon-wrapper"><a href="#"><img class="img-fluid for-light" src="../assets/images/logo/logo-icon.png" alt=""><img class="img-fluid for-dark" src="../assets/images/logo/logo-icon-dark.png" alt=""></a></div>
+            <nav class="sidebar-main">
+              <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
+              <div id="sidebar-menu">
+                <ul class="sidebar-links" id="simple-bar">
+                  <li class="back-btn">
+                    <a href="#"><img class="img-fluid for-light" src="../assets/images/logo/logo-icon.png" alt=""><img class="img-fluid for-dark" src="../assets/images/logo/logo-icon-dark.png" alt=""></a>
+                    <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Olah Gerak Kapal</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="home"></i><span>Home</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Overview</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="pergerakan-kapal.html"><i data-feather="map"></i><span>Pergerakan Kapal</span></a>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="pergerakan-kapal-cuaca.html"><i data-feather="cloud"></i><span>Cuaca</span></a>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="pergerakan-kapal-perhitungan-bbm.html"><i data-feather="anchor"></i><span>Kapal & BBM</span></a>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="compass"></i><span>Pointing Kapal</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Sorting Kapal</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="map-pin"></i><span>Mastering Kapal</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Status Kapal</a></li>
+                      <li><a href="#">GPS</a></li>
+                      <li><a href="#">Selling Time & Quota BBM</a></li>
+                      <li><a href="#">Route Terdekat</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Repair & Maintenance</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="home"> </i><span>Home</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Overview</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="rm-kapal.html"><i data-feather="anchor"> </i><span>Kapal</span></a>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="rm-maintenance.html"><i data-feather="settings"> </i><span>Maintenance</span></a>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="bell"> </i><span>Notifikasi</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Notifikasi Baru</a></li>
+                      <li><a href="#">Notifikasi Terkirim</a></li>
+                      <li><a href="#">Notifikasi Dibaca</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="monitor"> </i><span>Monitoring & Repair</span></a>
+                    <ul class="sidebar-submenu">
+                      <li>
+                        <a href="#">Monitoring Request</a>
+                        <ul class="sidebar-submenu">
+                          <li><a href="#">Monitoring Maintenance</a></li>
+                          <li><a href="#">Monitoring Docking</a></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a href="#">Repair Estimasi</a>
+                        <ul class="sidebar-submenu">
+                          <li><a href="#">Pemeriksaan</a></li>
+                          <li><a href="#">Perkiraan Biaya</a></li>
+                          <li><a href="#">Estimasi Biaya Perbaikan</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="check-square"> </i><span>Approval</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Persetujuan 1x24 Jam</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="dollar-sign"> </i><span>Finance</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Kontrol Estimasi Biaya</a></li>
+                      <li><a href="#">Penjelasan Estimasi Repair List</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="settings"> </i><span>Pengaturan</span></a>
+                    <ul class="sidebar-submenu">
+                      <li>
+                        <a href="#">Koneksi RM & Pergerakan Kapal</a>
+                        <ul class="sidebar-submenu">
+                          <li><a href="#">Notifikasi Peringatan Maintenance</a></li>
+                          <li><a href="#">Lembar Kerja Jadwal Input (2.5/5 Tahun)</a></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a href="#">Kategori Maintenance (MK/Kapal)</a>
+                        <ul class="sidebar-submenu">
+                          <li><a href="#">Maintenance oleh MK</a></li>
+                          <li><a href="#">Maintenance oleh Kapal</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="message-square"> </i><span>Chat</span></a>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Logistic</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="logistic-home.html"><i data-feather="home"> </i><span>Dashboard</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="logistic-layout-gudang.html"><i data-feather="box"> </i><span>Layout Gudang</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="logistic-pengeluaran-barang.html"><i data-feather="box"> </i><span>Pengelolaan Barang</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="logistic-penerimaan-barang.html"><i data-feather="box"> </i><span>Penerimaan Barang</span></a>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Settings</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="edit"> </i><span>Roles</span></a></li>
+                  <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="sunrise"> </i><span>Documentation</span></a></li>
+                  <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="users"> </i><span>Support Ticket      </span></a></li>
+                </ul>
+                <div class="sidebar-img-section">
+                  <div class="sidebar-img-content">
+                    <img class="img-fluid" src="../assets/images/dashboard/upgrade/2.png" alt="">
+                    <h4>RB Control Hub <span style="font-size: 13px;"><br>Dashboard App</span></h4>
+                    <a class="btn btn-primary" href="#">Version 1.0</a>
+                  </div>
+                </div>
+              </div>
+              <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
+            </nav>
+          </div>
+        </div>
+        <!-- Page Sidebar Ends-->
+        <div class="page-body">
+          <div class="container-fluid">
+            <div class="page-title">
+              <div class="row">
+                <div class="col-6">
+                  <h3>Dashboard</h3>
+                </div>
+                <div class="col-6">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">                                       <i data-feather="home"></i></a></li>
+                    <li class="breadcrumb-item">Logistic</li>
+                    <li class="breadcrumb-item active">Dashboard</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Container-fluid starts-->
+          <div class="container-fluid">
+            
+  
+            
+
+      <!-- Tabel Maintenance -->
+      <div class="card">
+          <div class="card-header">
+              <h5>Maintenance</h5>
+              <button class="btn btn-custom btn-sm float-right" data-toggle="modal" data-target="#addMaintenanceModal"><i class="fas fa-plus"></i> Tambah Maintenance</button>
+          </div>
+          <div class="card-body">
+              <table class="table table-striped" id="tableMaintenance">
+                  <thead>
+                      <tr>
+                          <th>Nama Kapal</th>
+                          <th>Jadwal</th>
+                          <th>Periode</th>
+                          <th>Objek</th>
+                          <th>Kategori Mesin</th>
+                          <th>Status</th>
+                          <th>Area</th>
+                          <th>Biaya</th>
+                          <th>Estimasi Waktu Selesai</th>
+                          <th>Actions</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>KM Nusantara</td>
+                          <td>2024-06-20</td>
+                          <td>Mingguan</td>
+                          <td>Mesin Diesel</td>
+                          <td>Mesin Diesel</td>
+                          <td>Sedang Diperbaiki</td>
+                          <td>Docking Area</td>
+                          <td>Rp 10.000.000</td>
+                          <td>2024-06-23</td>
+                          <td>
+                              <button class="btn btn-primary btn-sm" onclick="editRow(this)">Edit</button>
+                              <button class="btn btn-danger btn-sm" onclick="deleteRow(this)">Delete</button>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>KM Merdeka</td>
+                          <td>2024-07-01</td>
+                          <td>Bulanan</td>
+                          <td>Peralatan Navigasi</td>
+                          <td>Mesin Listrik</td>
+                          <td>Perbaikan Selesai</td>
+                          <td>Lokasi Laut</td>
+                          <td>Rp 5.000.000</td>
+                          <td>2024-07-02</td>
+                          <td>
+                              <button class="btn btn-primary btn-sm" onclick="editRow(this)">Edit</button>
+                              <button class="btn btn-danger btn-sm" onclick="deleteRow(this)">Delete</button>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>KM Bahari</td>
+                          <td>2024-08-15</td>
+                          <td>Tahunan</td>
+                          <td>Sistem Elektronik</td>
+                          <td>Mesin Hidrolik</td>
+                          <td>Perawatan Tertunda</td>
+                          <td>Lokasi Darat</td>
+                          <td>Rp 15.000.000</td>
+                          <td>2024-08-22</td>
+                          <td>
+                              <button class="btn btn-primary btn-sm" onclick="editRow(this)">Edit</button>
+                              <button class="btn btn-danger btn-sm" onclick="deleteRow(this)">Delete</button>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>KM Samudra</td>
+                          <td>2024-06-25</td>
+                          <td>Mingguan</td>
+                          <td>Mesin Listrik</td>
+                          <td>Mesin Diesel</td>
+                          <td>Sedang Diperbaiki</td>
+                          <td>Docking Area</td>
+                          <td>Rp 10.000.000</td>
+                          <td>2024-06-28</td>
+                          <td>
+                              <button class="btn btn-primary btn-sm" onclick="editRow(this)">Edit</button>
+                              <button class="btn btn-danger btn-sm" onclick="deleteRow(this)">Delete</button>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>KM Lautan</td>
+                          <td>2024-09-05</td>
+                          <td>Tahunan</td>
+                          <td>Mesin Hidrolik</td>
+                          <td>Mesin Listrik</td>
+                          <td>Perbaikan Selesai</td>
+                          <td>Lokasi Laut</td>
+                          <td>Rp 20.000.000</td>
+                          <td>2024-09-10</td>
+                          <td>
+                              <button class="btn btn-primary btn-sm" onclick="editRow(this)">Edit</button>
+                              <button class="btn btn-danger btn-sm" onclick="deleteRow(this)">Delete</button>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+
+      <!-- Card untuk Setting Jadwal Otomatis -->
+      <div class="card">
+          <div class="card-header">
+              <h5>Pengaturan Jadwal Otomatis</h5>
+          </div>
+          <div class="card-body">
+              <div id="reminderSettings">
+                  <p>Pengingat jadwal maintenance otomatis telah diaktifkan. Anda akan menerima notifikasi sehari sebelum jadwal maintenance yang ditetapkan.</p>
+                  <button class="btn btn-custom" onclick="showReminderNotifications()">Lihat Notifikasi</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Modal Tambah Maintenance -->
+  <div class="modal fade" id="addMaintenanceModal" tabindex="-1" aria-labelledby="addMaintenanceModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="addMaintenanceModalLabel">Tambah Maintenance</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <form id="addMaintenanceForm">
+                  <div class="modal-body">
+                      <!-- Nama Kapal -->
+                      <div class="form-group">
+                          <label for="namaKapal">Nama Kapal</label>
+                          <select class="form-control" id="namaKapal" required>
+                              <option value="KM Nusantara">KM Nusantara</option>
+                              <option value="KM Merdeka">KM Merdeka</option>
+                              <option value="KM Bahari">KM Bahari</option>
+                              <option value="KM Samudra">KM Samudra</option>
+                              <option value="KM Lautan">KM Lautan</option>
+                          </select>
+                      </div>
+                      <!-- Jadwal Maintenance -->
+                      <div class="form-group">
+                          <label for="jadwalMaintenance">Jadwal Maintenance</label>
+                          <input type="date" class="form-control" id="jadwalMaintenance" required>
+                      </div>
+                      <!-- Periode Maintenance -->
+                      <div class="form-group">
+                          <label for="periodeMaintenance">Periode Maintenance</label>
+                          <select class="form-control" id="periodeMaintenance" required>
+                              <option value="Mingguan">Mingguan</option>
+                              <option value="Bulanan">Bulanan</option>
+                              <option value="Tahunan">Tahunan</option>
+                          </select>
+                      </div>
+                      <!-- Objek Maintenance -->
+                      <div class="form-group">
+                          <label for="objekMaintenance">Objek Maintenance</label>
+                          <input type="text" class="form-control" id="objekMaintenance" required>
+                      </div>
+                      <!-- Kategori Mesin -->
+                      <div class="form-group">
+                          <label for="kategoriMesin">Kategori Mesin</label>
+                          <input type="text" class="form-control" id="kategoriMesin" required>
+                      </div>
+                      <!-- Status Maintenance -->
+                      <div class="form-group">
+                          <label for="statusMaintenance">Status Maintenance</label>
+                          <select class="form-control" id="statusMaintenance" required>
+                              <option value="Sedang Diperbaiki">Sedang Diperbaiki</option>
+                              <option value="Perbaikan Selesai">Perbaikan Selesai</option>
+                              <option value="Perawatan Tertunda">Perawatan Tertunda</option>
+                          </select>
+                      </div>
+                      <!-- Area Maintenance -->
+                      <div class="form-group">
+                          <label for="areaMaintenance">Area Maintenance</label>
+                          <select class="form-control" id="areaMaintenance" required>
+                              <option value="Docking Area">Docking Area</option>
+                              <option value="Lokasi Laut">Lokasi Laut</option>
+                              <option value="Lokasi Darat">Lokasi Darat</option>
+                          </select>
+                      </div>
+                      <!-- Biaya Maintenance -->
+                      <div class="form-group">
+                          <label for="biayaMaintenance">Biaya Maintenance</label>
+                          <input type="number" class="form-control" id="biayaMaintenance" required>
+                      </div>
+                      <!-- Estimasi Waktu Selesai -->
+                      <div class="form-group">
+                          <label for="estimasiWaktu">Estimasi Waktu Selesai</label>
+                          <input type="date" class="form-control" id="estimasiWaktu" required>
+                      </div>
+                      <!-- Aktifkan Maintenance Otomatis -->
+                      <div class="form-group">
+                          <label for="aktifkanMaintenanceOtomatis">Aktifkan Maintenance Otomatis</label>
+                          <select class="form-control" id="aktifkanMaintenanceOtomatis" required>
+                              <option value="Ya">Ya</option>
+                              <option value="Tidak">Tidak</option>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                      <button type="submit" class="btn btn-custom">Simpan</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+
+  <!-- Modal Lihat Notifikasi -->
+  <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="notificationModalLabel">Notifikasi Reminder Maintenance</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <ul class="list-group">
+                      <!-- Dinamis mengisi list notifikasi berdasarkan jadwal otomatis -->
+                  </ul>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+              </div>
+          </div>
+      </div>
+      
+          </div>
+          <!-- Container-fluid Ends-->
+        </div>
+        <!-- footer start-->
+        <footer class="footer">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-2 p-0 footer-left"></div>
+              <div class="col-10 p-0 footer-right">
+                <p class="mb-0">Copyright 2023 © RB Control Hub by LTI</p>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+    
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            let editingRow = null;
+
+            $('#addMaintenanceForm').on('submit', function(e) {
+                e.preventDefault();
+                // Ambil data dari form
+                var data = {
+                    namaKapal: $('#namaKapal').val(),
+                    jadwal: $('#jadwalMaintenance').val(),
+                    periode: $('#periodeMaintenance').val(),
+                    objek: $('#objekMaintenance').val(),
+                    kategoriMesin: $('#kategoriMesin').val(),
+                    status: $('#statusMaintenance').val(),
+                    area: $('#areaMaintenance').val(),
+                    biaya: $('#biayaMaintenance').val(),
+                    estimasiWaktu: $('#estimasiWaktu').val(),
+                    otomatis: $('#aktifkanMaintenanceOtomatis').val()
+                };
+
+                if (editingRow) {
+                    // Update the existing row
+                    $(editingRow).find('td:eq(0)').text(data.namaKapal);
+                    $(editingRow).find('td:eq(1)').text(data.jadwal);
+                    $(editingRow).find('td:eq(2)').text(data.periode);
+                    $(editingRow).find('td:eq(3)').text(data.objek);
+                    $(editingRow).find('td:eq(4)').text(data.kategoriMesin);
+                    $(editingRow).find('td:eq(5)').text(data.status);
+                    $(editingRow).find('td:eq(6)').text(data.area);
+                    $(editingRow).find('td:eq(7)').text(data.biaya);
+                    $(editingRow).find('td:eq(8)').text(data.estimasiWaktu);
+
+                    // Update notifications
+                    if (data.otomatis === "Ya") {
+                        updateAutomaticReminder(data);
+                    }
+
+                    editingRow = null;
+                } else {
+                    // Add new row
+                    $('#tableMaintenance tbody').append(
+                        `<tr>
+                            <td>${data.namaKapal}</td>
+                            <td>${data.jadwal}</td>
+                            <td>${data.periode}</td>
+                            <td>${data.objek}</td>
+                            <td>${data.kategoriMesin}</td>
+                            <td>${data.status}</td>
+                            <td>${data.area}</td>
+                            <td>${data.biaya}</td>
+                            <td>${data.estimasiWaktu}</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm" onclick="editRow(this)">Edit</button>
+                                <button class="btn btn-danger btn-sm" onclick="deleteRow(this)">Delete</button>
+                            </td>
+                        </tr>`
+                    );
+
+                    if (data.otomatis === "Ya") {
+                        setAutomaticReminder(data);
+                    }
+                }
+
+                $('#addMaintenanceModal').modal('hide');
+            });
+
+            window.editRow = function(button) {
+                var row = $(button).closest('tr');
+                editingRow = row;
+
+                var data = {
+                    namaKapal: row.find('td:eq(0)').text(),
+                    jadwal: row.find('td:eq(1)').text(),
+                    periode: row.find('td:eq(2)').text(),
+                    objek: row.find('td:eq(3)').text(),
+                    kategoriMesin: row.find('td:eq(4)').text(),
+                    status: row.find('td:eq(5)').text(),
+                    area: row.find('td:eq(6)').text(),
+                    biaya: row.find('td:eq(7)').text(),
+                    estimasiWaktu: row.find('td:eq(8)').text()
+                };
+
+                $('#namaKapal').val(data.namaKapal);
+                $('#jadwalMaintenance').val(data.jadwal);
+                $('#periodeMaintenance').val(data.periode);
+                $('#objekMaintenance').val(data.objek);
+                $('#kategoriMesin').val(data.kategoriMesin);
+                $('#statusMaintenance').val(data.status);
+                $('#areaMaintenance').val(data.area);
+                $('#biayaMaintenance').val(data.biaya);
+                $('#estimasiWaktu').val(data.estimasiWaktu);
+
+                $('#addMaintenanceModal').modal('show');
+            };
+
+            window.deleteRow = function(button) {
+                var row = $(button).closest('tr');
+                var data = {
+                    namaKapal: row.find('td:eq(0)').text(),
+                    jadwal: row.find('td:eq(1)').text()
+                };
+                row.remove();
+                removeAutomaticReminder(data);
+            };
+
+            function setAutomaticReminder(data) {
+                // Simulasi penambahan pengingat otomatis
+                var reminderDate = new Date(data.jadwal);
+                reminderDate.setDate(reminderDate.getDate() - 1); // Set reminder sehari sebelum
+                var reminderItem = `Reminder: Maintenance ${data.namaKapal} pada ${reminderDate.toISOString().split('T')[0]}`;
+                $('#notificationModal .modal-body ul').append(`<li class="list-group-item" data-kapal="${data.namaKapal}" data-jadwal="${data.jadwal}">${reminderItem}</li>`);
+            }
+
+            function updateAutomaticReminder(data) {
+                // Remove existing reminder for the same kapal and jadwal
+                $('#notificationModal .modal-body ul li').filter(function() {
+                    return $(this).data('kapal') === data.namaKapal && $(this).data('jadwal') === data.jadwal;
+                }).remove();
+
+                // Add new reminder
+                setAutomaticReminder(data);
+            }
+
+            function removeAutomaticReminder(data) {
+                $('#notificationModal .modal-body ul li').filter(function() {
+                    return $(this).data('kapal') === data.namaKapal && $(this).data('jadwal') === data.jadwal;
+                }).remove();
+            }
+
+            window.showReminderNotifications = function() {
+                $('#notificationModal').modal('show');
+            };
+        });
+    </script>
+    <!-- latest jquery-->
+    <script src="../assets/js/jquery-3.6.0.min.js"></script>
+    <script src="../assets/js/bootstrap/popper.min.js"></script>
+    <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+    <!-- feather icon js-->
+    <script src="../assets/js/icons/feather-icon/feather.min.js"></script>
+    <script src="../assets/js/icons/feather-icon/feather-icon.js"></script>
+    <script src="../assets/js/scrollbar/simplebar.js"></script>
+    <script src="../assets/js/scrollbar/custom.js"></script>
+    <!-- Sidebar jquery-->
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/sidebar-menu.js"></script>
+    <script src="../assets/js/tooltip-init.js"></script>
+    <!-- Theme js-->
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/theme-customizer/customizer.js"></script>
+  </body>
+</html>

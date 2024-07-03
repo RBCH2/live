@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Logistik - Ringkasan Umum</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      .card-title {
+      font-size: 1.2rem;
+      }
+      .card-text {
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: center;
+      }
+      .card {
+      border: none;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .chart-container {
+      padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container my-4">
+      <div class="row mb-4">
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card text-white bg-info h-100">
+            <div class="card-body">
+              <h5 class="card-title">Total Barang di Gudang</h5>
+              <p class="card-text">5230</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card text-white bg-success h-100">
+            <div class="card-body">
+              <h5 class="card-title">Total Penerimaan Hari Ini</h5>
+              <p class="card-text">34</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card text-white bg-warning h-100">
+            <div class="card-body">
+              <h5 class="card-title">Barang Mendekati Kadaluarsa</h5>
+              <p class="card-text">5</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card text-white bg-danger h-100">
+            <div class="card-body">
+              <h5 class="card-title">Total Nilai Barang</h5>
+              <p class="card-text">Rp 7.500.000.000</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <canvas id="stokBarangChart"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <canvas id="kondisiBarangChart"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <canvas id="umurBarangChart"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <canvas id="trenPenerimaanChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script>
+      feather.replace();
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+          const ctxStokBarang = document.getElementById('stokBarangChart').getContext('2d');
+          const ctxKondisiBarang = document.getElementById('kondisiBarangChart').getContext('2d');
+          const ctxUmurBarang = document.getElementById('umurBarangChart').getContext('2d');
+          const ctxTrenPenerimaan = document.getElementById('trenPenerimaanChart').getContext('2d');
+      
+          const stokBarangChart = new Chart(ctxStokBarang, {
+              type: 'bar',
+              data: {
+                  labels: ['Suku Cadang Mesin', 'Bahan Bakar', 'Pelumas', 'Perlengkapan Dek'],
+                  datasets: [{
+                      label: 'Stok Barang',
+                      data: [1500, 1000, 800, 1930],
+                      backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                      borderColor: 'rgba(75, 192, 192, 1)',
+                      borderWidth: 1
+                  }]
+              },
+              options: {
+                  responsive: true,
+                  maintainAspectRatio: false
+              }
+          });
+      
+          const kondisiBarangChart = new Chart(ctxKondisiBarang, {
+              type: 'pie',
+              data: {
+                  labels: ['Baik', 'Rusak', 'Kadaluarsa'],
+                  datasets: [{
+                      label: 'Kondisi Barang',
+                      data: [4500, 400, 330],
+                      backgroundColor: [
+                          'rgba(75, 192, 192, 0.2)',
+                          'rgba(255, 99, 132, 0.2)',
+                          'rgba(255, 206, 86, 0.2)'
+                      ],
+                      borderColor: [
+                          'rgba(75, 192, 192, 1)',
+                          'rgba(255, 99, 132, 1)',
+                          'rgba(255, 206, 86, 1)'
+                      ],
+                      borderWidth: 1
+                  }]
+              },
+              options: {
+                  responsive: true,
+                  maintainAspectRatio: false
+              }
+          });
+      
+          const umurBarangChart = new Chart(ctxUmurBarang, {
+              type: 'bar',
+              data: {
+                  labels: ['0-1 Tahun', '1-2 Tahun', '2-3 Tahun'],
+                  datasets: [{
+                      label: 'Umur Barang',
+                      data: [1800, 2200, 1230],
+                      backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                      borderColor: 'rgba(153, 102, 255, 1)',
+                      borderWidth: 1
+                  }]
+              },
+              options: {
+                  responsive: true,
+                  maintainAspectRatio: false
+              }
+          });
+      
+          const trenPenerimaanChart = new Chart(ctxTrenPenerimaan, {
+              type: 'line',
+              data: {
+                  labels: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'],
+                  datasets: [{
+                      label: 'Tren Penerimaan Barang',
+                      data: [45, 67, 50, 58, 72, 80, 62],
+                      backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                      borderColor: 'rgba(54, 162, 235, 1)',
+                      borderWidth: 1
+                  }]
+              },
+              options: {
+                  responsive: true,
+                  maintainAspectRatio: false
+              }
+          });
+      });
+    </script>
+  </body>
+</html>

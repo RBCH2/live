@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../assets/images/favicon/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/images/favicon/favicon.png" type="image/x-icon">
+    <title>RB Control Hub</title>
+    <!-- Google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/font-awesome.css">
+    <!-- ico-font-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/icofont.css">
+    <!-- Themify icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/themify.css">
+    <!-- Flag icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/flag-icon.css">
+    <!-- Feather icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/feather-icon.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/scrollbar.css">
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/bootstrap.css">
+    <!-- App css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link id="color" rel="stylesheet" href="../assets/css/color-1.css" media="screen">
+    <!-- Responsive css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
+  </head>
+  <body>
+    <!-- tap on top starts-->
+    <div class="tap-top"><i data-feather="chevrons-up"></i></div>
+    <!-- tap on tap ends-->
+    <!-- Loader starts-->
+    <div class="loader-wrapper">
+      <div class="loader"></div>
+    </div>
+    <!-- Loader ends-->
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+      <!-- Page Header Start-->
+      <div class="page-header">
+        <div class="header-wrapper row m-0">
+          <form class="form-inline search-full col" action="#" method="get">
+            <div class="form-group w-100">
+              <div class="Typeahead Typeahead--twitterUsers">
+                <div class="u-posRelative">
+                  <input class="demo-input Typeahead-input form-control-plaintext w-100" type="text" placeholder="Search Koho .." name="q" title="" autofocus>
+                  <div class="spinner-border Typeahead-spinner" role="status"><span class="sr-only">Loading...</span></div>
+                  <i class="close-search" data-feather="x"></i>
+                </div>
+                <div class="Typeahead-menu"></div>
+              </div>
+            </div>
+          </form>
+          <div class="header-logo-wrapper col-auto p-0">
+            <div class="logo-wrapper"><a href="#"><img class="img-fluid for-light hg-50" src="../assets/images/logo/logo.png" alt=""><img class="img-fluid for-dark hg-50" src="../assets/images/logo/logo-dark.png" alt=""></a></div>
+            <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i></div>
+          </div>
+          <div class="left-header col horizontal-wrapper ps-0">
+            <div class="input-group">     
+              <input class="form-control" type="text" placeholder="Search Here..."><span class="input-group-text mobile-search"><i data-feather="search"></i></span>
+            </div>
+          </div>
+          <div class="nav-right col-6 pull-right right-header p-0">
+            <ul class="nav-menus">
+              <li>
+                <div class="mode"><i data-feather="moon"></i></div>
+              </li>
+              <li class="onhover-dropdown">
+                <div class="notification-box"><i data-feather="star"></i></div>
+                <div class="onhover-show-div bookmark-flip">
+                  <div class="flip-card">
+                    <div class="flip-card-inner">
+                      <div class="front">
+                        <ul class="droplet-dropdown bookmark-dropdown">
+                          <li class="gradient-primary">
+                            <i data-feather="star"></i>
+                            <h3 class="mb-0">Bookmark</h3>
+                          </li>
+                          <li>
+                            <div class="row">
+                              <div class="col-4 text-center"><a href="#"><i data-feather="file-text"></i></a></div>
+                              <div class="col-4 text-center"><a href="#"><i data-feather="activity"></i></a></div>
+                              <div class="col-4 text-center"><a href="#"><i data-feather="users"></i></a></div>
+                              <div class="col-4 text-center"><a href="#"><i data-feather="clipboard"></i></a></div>
+                              <div class="col-4 text-center"><a href="#"><i data-feather="anchor"></i></a></div>
+                              <div class="col-4 text-center"><a href="#"><i data-feather="settings"></i></a></div>
+                            </div>
+                          </li>
+                          <li class="text-center">
+                            <button class="flip-btn" id="flip-btn">Add New Bookmark</button>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="back">
+                        <ul>
+                          <li>
+                            <div class="droplet-dropdown bookmark-dropdown flip-back-content">
+                              <input type="text" placeholder="search...">
+                            </div>
+                          </li>
+                          <li class="pb-0">
+                            <button class="d-block flip-back" id="flip-back">Back          </button>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="onhover-dropdown">
+                <div class="notification-box"><i data-feather="bell"></i><span class="badge rounded-pill badge-primary">4                                </span></div>
+                <ul class="notification-dropdown onhover-show-div">
+                  <li>
+                    <i data-feather="bell">            </i>
+                    <h3 class="mb-0">Notifications</h3>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <p><i class="fa fa-circle-o me-3 font-primary"> </i>Delivery processing <span class="pull-right">10 min.</span></p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <p><i class="fa fa-circle-o me-3"></i>Order Complete<span class="pull-right">1 hr</span></p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <p><i class="fa fa-circle-o me-3 font-info"></i>Tickets Generated<span class="pull-right">3 hr</span></p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <p><i class="fa fa-circle-o me-3"></i>Delivery Complete<span class="pull-right">6 hr</span></p>
+                    </a>
+                  </li>
+                  <li><a class="btn btn-primary" href="#">Check all notification</a></li>
+                </ul>
+              </li>
+              <li class="onhover-dropdown">
+                <i data-feather="message-square"></i>
+                <ul class="chat-dropdown onhover-show-div">
+                  <li>
+                    <i data-feather="message-square"></i>
+                    <h3 class="mb-0">Message Box</h3>
+                  </li>
+                  <li>
+                    <div class="d-flex">
+                      <img class="img-fluid rounded-circle me-3" src="../assets/images/user/6.jpg" alt="">
+                      <div class="status-circle online"></div>
+                      <div class="flex-grow-1">
+                        <a href="#">
+                          <span>Ain Chavez</span>
+                          <p>Do you want to go see movie?</p>
+                        </a>
+                      </div>
+                      <p class="f-12">2 mins ago</p>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="d-flex">
+                      <img class="img-fluid rounded-circle me-3" src="../assets/images/user/1.jpg" alt="">
+                      <div class="status-circle online"></div>
+                      <div class="flex-grow-1">
+                        <a href="#">
+                          <span>Erica Hughes</span>
+                          <p>Thank you for rating us.</p>
+                        </a>
+                      </div>
+                      <p class="f-12">5 mins ago</p>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="d-flex">
+                      <img class="img-fluid rounded-circle me-3" src="../assets/images/user/7.jpg" alt="">
+                      <div class="status-circle offline"></div>
+                      <div class="flex-grow-1">
+                        <a href="#">
+                          <span>Kori Thomas</span>
+                          <p>What`s the project report update?</p>
+                        </a>
+                      </div>
+                      <p class="f-12">9 mins ago</p>
+                    </div>
+                  </li>
+                  <li class="text-center"> <a class="btn btn-primary" href="chat.html">View All     </a></li>
+                </ul>
+              </li>
+              <li class="maximize"><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i data-feather="maximize"></i></a></li>
+              <li class="profile-nav onhover-dropdown p-0 me-0">
+                <div class="d-flex profile-media">
+                  <img class="b-r-50" src="../assets/images/dashboard/profile.png" alt="">
+                  <div class="flex-grow-1">
+                    <span>Dudik Walter</span>
+                    <p class="mb-0 font-roboto">Admin <i class="middle fa fa-angle-down"></i></p>
+                  </div>
+                </div>
+                <ul class="profile-dropdown onhover-show-div">
+                  <li><a href="#"><i data-feather="user"></i><span>Account </span></a></li>
+                  <li><a href="email_inbox.html"><i data-feather="mail"></i><span>Inbox</span></a></li>
+                  <li><a href="kanban.html"><i data-feather="file-text"></i><span>Taskboard</span></a></li>
+                  <li><a href="login.html"><i data-feather="log-in"> </i><span>Log in</span></a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <script class="result-template" type="text/x-handlebars-template">
+            <div class="ProfileCard u-cf">                        
+            <div class="ProfileCard-avatar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-airplay m-0"><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"></path><polygon points="12 15 17 21 7 21 12 15"></polygon></svg></div>
+            <div class="ProfileCard-details">
+            <div class="ProfileCard-realName">{{name}}</div>
+            </div>
+            </div>
+          </script>
+          <script class="empty-template" type="text/x-handlebars-template"><div class="EmptyMessage">Your search turned up 0 results. This most likely means the backend is down, yikes!</div></script>
+        </div>
+      </div>
+      <!-- Page Header Ends                              -->
+      <!-- Page Body Start-->
+      <div class="page-body-wrapper">
+        <!-- Page Sidebar Start-->
+        <div class="sidebar-wrapper">
+          <div>
+            <div class="logo-wrapper">
+              <a href="#"><img class="img-fluid for-light hg-50" src="../assets/images/logo/logo.png" alt=""><img class="img-fluid for-dark hg-50" src="../assets/images/logo/logo-dark.png" alt=""></a>
+              <div class="back-btn"><i class="fa fa-angle-left"></i></div>
+              <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="align-left"> </i></div>
+            </div>
+            <div class="logo-icon-wrapper"><a href="#"><img class="img-fluid for-light" src="../assets/images/logo/logo-icon.png" alt=""><img class="img-fluid for-dark" src="../assets/images/logo/logo-icon-dark.png" alt=""></a></div>
+            <nav class="sidebar-main">
+              <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
+              <div id="sidebar-menu">
+                <ul class="sidebar-links" id="simple-bar">
+                  <li class="back-btn">
+                    <a href="#"><img class="img-fluid for-light" src="../assets/images/logo/logo-icon.png" alt=""><img class="img-fluid for-dark" src="../assets/images/logo/logo-icon-dark.png" alt=""></a>
+                    <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Dashboard</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="index.html"><i data-feather="home"> </i><span>General</span></a>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Transaction</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="status.html">
+                      <i data-feather="airplay"></i><span>Status</span>
+                    </a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="kelengkapan.html">
+                      <i data-feather="trello"></i><span>Kelengkapan</span>
+                    </a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="jadwal.html">
+                      <i data-feather="anchor"></i><span>Jadwal</span>
+                    </a>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Marketing</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="home"> </i><span>Dashboard</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="clipboard"> </i><span>Transaction</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="activity"> </i><span>Demmurage</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="box"> </i><span>Help Desk</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="folder"> </i><span>Documents</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="message-square"> </i><span>Chat</span></a>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Planner</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="home"> </i><span>Dashboard</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="git-pull-request"> </i><span>Request</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="cast"> </i><span>Jadwal Kapal</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="folder"> </i><span>Documents</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="message-square"> </i><span>Chat</span></a>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Dokumentasi</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="cast"> </i><span>DMS</span></a>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Monitoring</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="home"> </i><span>Dashboard</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="file-text"> </i><span>Checklist Kapal</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="radio"> </i><span>Tracking</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="folder"> </i><span>Documents</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="message-square"> </i><span>Chat</span></a>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Crewing</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="home"> </i><span>Dashboard</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="users"> </i><span>Absensi</span></a>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title" href="javascript:void(0)"><i data-feather="box"></i><span>HRMS</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Database</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="folder"> </i><span>Documents</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="message-square"> </i><span>Chat</span></a>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Repair & Maintenance</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="home"> </i><span>Dashboard</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="git-pull-request"> </i><span>Request</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="folder"> </i><span>Documents</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="message-square"> </i><span>Chat</span></a>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>HSE</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="home"> </i><span>Dashboard</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="file-text"> </i><span>Checklist</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="folder"> </i><span>Documents</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="message-square"> </i><span>Chat</span></a>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Logistic</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="home"> </i><span>Dashboard</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="database"> </i><span>Database</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="folder"> </i><span>Documents</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="message-square"> </i><span>Chat</span></a>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Inventory</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="home"> </i><span>Dashboard</span></a>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title" href="javascript:void(0)"><i data-feather="database"></i><span>Database</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Stok Barang</a></li>
+                      <li><a href="#">Penerimaan </a></li>
+                      <li><a href="#">Pengeluaran  </a></li>
+                      <li><a href="#">Tracking  </a></li>
+                      <li><a href="#">Laporan  </a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="folder"> </i><span>Documents</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="message-square"> </i><span>Chat</span></a>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Human Resource</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="home"> </i><span>Dashboard</span></a>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title" href="javascript:void(0)"><i data-feather="box"></i><span>HRMS</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Database</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="folder"> </i><span>Documents</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="message-square"> </i><span>Chat</span></a>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Finance</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="home"> </i><span>Dashboard</span></a>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title" href="javascript:void(0)"><i data-feather="database"></i><span>Database</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Pembayaran</a></li>
+                      <li><a href="#">Pemasukan</a></li>
+                      <li><a href="#">Pengeluaran</a></li>
+                      <li><a href="#">Laporan</a></li>
+                      <li><a href="#">Penagihan</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="folder"> </i><span>Documents</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="message-square"> </i><span>Chat</span></a>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Settings</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="edit"> </i><span>Roles</span></a></li>
+                  <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="sunrise"> </i><span>Documentation</span></a></li>
+                  <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="users"> </i><span>Support Ticket      </span></a></li>
+                </ul>
+                <div class="sidebar-img-section">
+                  <div class="sidebar-img-content">
+                    <img class="img-fluid" src="../assets/images/dashboard/upgrade/2.png" alt="">
+                    <h4>RB Control Hub <span style="font-size: 13px;"><br>Dashboard App</span></h4>
+                    <a class="btn btn-primary" href="#">Version 1.0</a>
+                  </div>
+                </div>
+              </div>
+              <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
+            </nav>
+          </div>
+        </div>
+        <!-- Page Sidebar Ends-->
+        <div class="page-body">
+          <div class="container-fluid">
+            <div class="page-title">
+              <div class="row">
+                <div class="col-6">
+                  <h3>Jadwal</h3>
+                </div>
+                <div class="col-6">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#"><i data-feather="home"></i></a></li>
+                    <li class="breadcrumb-item">Transaction</li>
+                    <li class="breadcrumb-item active">Jadwal</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Container-fluid starts-->
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-xl-3 xl-40 box-col-40">
+                <div class="md-sidebar job-sidebar">
+                  <a class="btn btn-primary md-sidebar-toggle" href="javascript:void(0)">job filter</a>
+                  <div class="md-sidebar-aside job-left-aside custom-scrollbar">
+                    <div class="default-according style-1 faq-accordion job-accordion" id="accordionoc">
+                      <div class="row">
+                        <div class="col-xl-12">
+                          <div class="card">
+                            <div class="card-header">
+                              <h5 class="mb-0 p-0">
+                                <button class="btn btn-link ps-0" data-bs-toggle="collapse" data-bs-target="#collapseicon1" aria-expanded="true" aria-controls="collapseicon1">Jenis Kontrak</button>
+                              </h5>
+                            </div>
+                            <div class="collapse show" id="collapseicon1" aria-labelledby="collapseicon1" data-parent="#accordion">
+                              <div class="card-body animate-chk">
+                                <div class="location-checkbox">
+                                  <label class="d-block" for="chk-ani6">
+                                  <input class="checkbox_animated" id="chk-ani6" type="checkbox">
+                                  Time Charter<span class="d-block">Jumlah Kapal (5)</span>
+                                  </label>
+                                  <label class="d-block" for="chk-ani7">
+                                  <input class="checkbox_animated" id="chk-ani7" type="checkbox">
+                                  Cargo Based Charter<span class="d-block">Jumlah Kapal (4)</span>
+                                  </label>
+                                  <label class="d-block mb-0" for="chk-ani8">
+                                  <input class="checkbox_animated" id="chk-ani8" type="checkbox">
+                                  Freight Charter<span class="d-block">Jumlah Kapal (6)</span>
+                                  </label>
+                                </div>
+                              </div>
+                              <button class="btn btn-block btn-primary text-center" type="button">Tampilkan Semua</button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-xl-12">
+                          <div class="card">
+                            <div class="card-header">
+                              <h5 class="mb-0 p-0">
+                                <button class="btn btn-link ps-0" data-bs-toggle="collapse" data-bs-target="#collapseicon1" aria-expanded="true" aria-controls="collapseicon1">Pelabuhan Asal</button>
+                              </h5>
+                            </div>
+                            <div class="collapse show" id="collapseicon1" aria-labelledby="collapseicon1" data-parent="#accordion">
+                              <div class="card-body animate-chk">
+                                <div class="location-checkbox">
+                                  <label class="d-block" for="chk-ani6">
+                                  <input class="checkbox_animated" id="chk-ani6" type="checkbox">
+                                  Area Labuh Zona 3B<span class="d-block">Jumlah Kapal (3)</span>
+                                  </label>
+                                  <label class="d-block" for="chk-ani7">
+                                  <input class="checkbox_animated" id="chk-ani7" type="checkbox">
+                                  Area Labuh Perairan STS Muara Berau<span class="d-block">Jumlah Kapal (2)</span>
+                                  </label>
+                                  <label class="d-block mb-0" for="chk-ani8">
+                                  <input class="checkbox_animated" id="chk-ani8" type="checkbox">
+                                  Jetty PT. Alamjaya Bara Pratama<span class="d-block">Jumlah Kapal (5)</span>
+                                  </label>
+                                </div>
+                              </div>
+                              <button class="btn btn-block btn-primary text-center" type="button">Tampilkan Semua</button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-xl-12">
+                          <div class="card">
+                            <div class="card-header">
+                              <h5 class="mb-0 p-0">
+                                <button class="btn btn-link ps-0" data-bs-toggle="collapse" data-bs-target="#collapseicon1" aria-expanded="true" aria-controls="collapseicon1">Pelabuhan Tujuan</button>
+                              </h5>
+                            </div>
+                            <div class="collapse show" id="collapseicon1" aria-labelledby="collapseicon1" data-parent="#accordion">
+                              <div class="card-body animate-chk">
+                                <div class="location-checkbox">
+                                  <label class="d-block" for="chk-ani6">
+                                  <input class="checkbox_animated" id="chk-ani6" type="checkbox">
+                                  Terminal Umum PTB Mara Berau LP 1<span class="d-block">Jumlah Kapal (3)</span>
+                                  </label>
+                                  <label class="d-block" for="chk-ani7">
+                                  <input class="checkbox_animated" id="chk-ani7" type="checkbox">
+                                  Tuks Alam Jaya Bara Pratama Dermaga 2<span class="d-block">Jumlah Kapal (2)</span>
+                                  </label>
+                                  <label class="d-block mb-0" for="chk-ani8">
+                                  <input class="checkbox_animated" id="chk-ani8" type="checkbox">
+                                  Zona Labuh 3A<span class="d-block">Jumlah Kapal (5)</span>
+                                  </label>
+                                </div>
+                              </div>
+                              <button class="btn btn-block btn-primary text-center" type="button">Tampilkan Semua</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-9 xl-60 box-col-60">
+                <div class="card">
+                  <div class="job-search">
+                    <div class="card-body">
+                      <div class="d-flex">
+                        <img class="img-40 img-fluid m-r-20" src="../assets/images/job-search/vessel_ico.png" alt="">
+                        <div class="flex-grow-1">
+                          <h3 class="f-w-600"><a href="#">TB. ROBBY 28</a><span class="badge badge-primary pull-right">Cargo Based Charter</span></h3>
+                          <p><i class="fa fa-clock-o"></i> 09 Jan 2023 - 11 Jan 2023</p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-xxl-12 col-xl-12">
+                          <div class="project-box mt-4">
+                            <div class="row details">
+                              <div class="col-2 mt-1"> <span>Nama Kapal</span></div>
+                              <div class="col-4 mt-1"><strong>TB. Robby 28</strong></div>
+
+                              <div class="col-2 mt-1"> <span>Jenis Kapal</span></div>
+                              <div class="col-4 mt-1"><strong>Motor Tunda (Tug Boat)</strong></div>
+
+                              <div class="col-2 mt-1"> <span>Bendera</span></div>
+                              <div class="col-4 mt-1"><strong>Indonesia</strong></div>
+
+                              <div class="col-2 mt-1"> <span>Isi Kotor</span></div>
+                              <div class="col-4 mt-1"><strong>169</strong></div>
+
+                              <div class="col-2 mt-1"> <span>Nahkoda</span></div>
+                              <div class="col-4 mt-1"><strong>Yulius Tandiapa</strong></div>
+
+                              <div class="col-2 mt-1"> <span>Milik/Agen</span></div>
+                              <div class="col-4 mt-1"><strong>PT. Perusahaan Pelayaran Rusianto Bersaudara</strong></div>
+
+                              <div class="col-2 mt-1"> <span>Waktu Gerak</span></div>
+                              <div class="col-4 mt-1"><strong>09 Jan 2023 | 16:00:00</strong></div>
+
+                              <div class="col-2 mt-1"> <span>Keperluan</span></div>
+                              <div class="col-4 mt-1"><strong>Masuk</strong></div>
+                            </div>
+                            <div class="project-status mt-5">
+                              <div class="d-flex mb-10">
+                                <h5><strong><i class="fa fa-anchor"></i><span>&nbsp;</span>Area Labuh Perairan STS Muara Berau</strong></h5>
+                                <div class="flex-grow-1 text-end">
+                                  <h5><strong><i class="fa fa-anchor"></i><span>&nbsp;</span>Zona Labuh 3A</strong></h5>
+                                </div>
+                              </div>
+                              <div class="progress" style="height: 5px">
+                                <div class="progress-bar-animated bg-success progress-bar-striped" role="progressbar" style="width: 70%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                              <div class="d-flex mb-0">
+                                <p>70% </p>
+                                <div class="flex-grow-1 text-end"><span>Done</span></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="job-search">
+                    <div class="card-body">
+                      <div class="d-flex">
+                        <img class="img-40 img-fluid m-r-20" src="../assets/images/job-search/vessel_ico.png" alt="">
+                        <div class="flex-grow-1">
+                          <h3 class="f-w-600"><a href="#">TB. ROBBY 96</a><span class="badge badge-primary pull-right">Cargo Based Charter</span></h3>
+                          <p><i class="fa fa-clock-o"></i> 10 Jan 2023 - 14 Jan 2023</p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-xxl-12 col-xl-12">
+                          <div class="project-box mt-4">
+                            <div class="row details">
+                              <div class="col-2 mt-1"> <span>Nama Kapal</span></div>
+                              <div class="col-4 mt-1"><strong>TB. Robby 96</strong></div>
+
+                              <div class="col-2 mt-1"> <span>Jenis Kapal</span></div>
+                              <div class="col-4 mt-1"><strong>Motor Tunda (Tug Boat)</strong></div>
+
+                              <div class="col-2 mt-1"> <span>Bendera</span></div>
+                              <div class="col-4 mt-1"><strong>Indonesia</strong></div>
+
+                              <div class="col-2 mt-1"> <span>Isi Kotor</span></div>
+                              <div class="col-4 mt-1"><strong>3136</strong></div>
+
+                              <div class="col-2 mt-1"> <span>Nahkoda</span></div>
+                              <div class="col-4 mt-1"><strong>Vicky Sianipar</strong></div>
+
+                              <div class="col-2 mt-1"> <span>Milik/Agen</span></div>
+                              <div class="col-4 mt-1"><strong>PT. Perusahaan Pelayaran Rusianto Bersaudara</strong></div>
+
+                              <div class="col-2 mt-1"> <span>Waktu Gerak</span></div>
+                              <div class="col-4 mt-1"><strong>10 Jan 2023 | 16:00:00</strong></div>
+
+                              <div class="col-2 mt-1"> <span>Keperluan</span></div>
+                              <div class="col-4 mt-1"><strong>Masuk</strong></div>
+                            </div>
+                            <div class="project-status mt-5">
+                              <div class="d-flex mb-10">
+                                <h5><strong><i class="fa fa-anchor"></i><span>&nbsp;</span>Area Labuh Perairan STS Muara Berau</strong></h5>
+                                <div class="flex-grow-1 text-end">
+                                  <h5><strong><i class="fa fa-anchor"></i><span>&nbsp;</span>Zona Labuh 3A</strong></h5>
+                                </div>
+                              </div>
+                              <div class="progress" style="height: 5px">
+                                <div class="progress-bar-animated bg-success progress-bar-striped" role="progressbar" style="width: 40%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                              <div class="d-flex mb-0">
+                                <p>40% </p>
+                                <div class="flex-grow-1 text-end"><span>Done</span></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="job-search">
+                    <div class="card-body">
+                      <div class="d-flex">
+                        <img class="img-40 img-fluid m-r-20" src="../assets/images/job-search/vessel_ico.png" alt="">
+                        <div class="flex-grow-1">
+                          <h3 class="f-w-600"><a href="#">TB. BERAU COAL 116</a><span class="badge badge-primary pull-right">Cargo Based Charter</span></h3>
+                          <p><i class="fa fa-clock-o"></i> 10 Jan 2023 - 16 Jan 2023</p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-xxl-12 col-xl-12">
+                          <div class="project-box mt-4">
+                            <div class="row details">
+                              <div class="col-2 mt-1"> <span>Nama Kapal</span></div>
+                              <div class="col-4 mt-1"><strong>TB. Berau Coal 116</strong></div>
+
+                              <div class="col-2 mt-1"> <span>Jenis Kapal</span></div>
+                              <div class="col-4 mt-1"><strong>Motor Tunda (Tug Boat)</strong></div>
+
+                              <div class="col-2 mt-1"> <span>Bendera</span></div>
+                              <div class="col-4 mt-1"><strong>Indonesia</strong></div>
+
+                              <div class="col-2 mt-1"> <span>Isi Kotor</span></div>
+                              <div class="col-4 mt-1"><strong>3136</strong></div>
+
+                              <div class="col-2 mt-1"> <span>Nahkoda</span></div>
+                              <div class="col-4 mt-1"><strong>John Romadon</strong></div>
+
+                              <div class="col-2 mt-1"> <span>Milik/Agen</span></div>
+                              <div class="col-4 mt-1"><strong>PT. Perusahaan Pelayaran Rusianto Bersaudara</strong></div>
+
+                              <div class="col-2 mt-1"> <span>Waktu Gerak</span></div>
+                              <div class="col-4 mt-1"><strong>10 Jan 2023 | 16:00:00</strong></div>
+
+                              <div class="col-2 mt-1"> <span>Keperluan</span></div>
+                              <div class="col-4 mt-1"><strong>Masuk</strong></div>
+                            </div>
+                            <div class="project-status mt-5">
+                              <div class="d-flex mb-10">
+                                <h5><strong><i class="fa fa-anchor"></i><span>&nbsp;</span>Area Labuh Perairan STS Muara Berau</strong></h5>
+                                <div class="flex-grow-1 text-end">
+                                  <h5><strong><i class="fa fa-anchor"></i><span>&nbsp;</span>Zona Labuh 3A</strong></h5>
+                                </div>
+                              </div>
+                              <div class="progress" style="height: 5px">
+                                <div class="progress-bar-animated bg-success progress-bar-striped" role="progressbar" style="width: 20%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                              <div class="d-flex mb-0">
+                                <p>20% </p>
+                                <div class="flex-grow-1 text-end"><span>Done</span></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Container-fluid Ends-->
+        </div>
+        <!-- footer start-->
+        <footer class="footer">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12 p-0">
+                <p class="mb-0 text-center">Copyright 2023 © RB Control Hub by LTI</p>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <!-- latest jquery-->
+    <script src="../assets/js/jquery-3.6.0.min.js"></script>
+    <script src="../assets/js/bootstrap/popper.min.js"></script>
+    <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+    <!-- feather icon js-->
+    <script src="../assets/js/icons/feather-icon/feather.min.js"></script>
+    <script src="../assets/js/icons/feather-icon/feather-icon.js"></script>
+    <script src="../assets/js/scrollbar/simplebar.js"></script>
+    <script src="../assets/js/scrollbar/custom.js"></script>
+    <!-- Sidebar jquery-->
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/sidebar-menu.js"></script>
+    <script src="../assets/js/tooltip-init.js"></script>
+    <!-- Theme js-->
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/theme-customizer/customizer.js"></script>
+  </body>
+</html>

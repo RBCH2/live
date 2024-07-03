@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freightic Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f5f7;
+            color: #333;
+        }
+        .navbar {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px 20px;
+        }
+        .navbar-brand {
+            color: #ff6f61;
+            font-weight: bold;
+        }
+        .navbar-nav .nav-link {
+            color: #555;
+            margin-right: 15px;
+        }
+        .navbar-nav .nav-link.active {
+            color: #ff6f61;
+        }
+        .container-fluid {
+            padding: 20px;
+        }
+        .tracking-input {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .tracking-input input {
+            flex: 1;
+            margin-right: 10px;
+        }
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .card-header {
+            background-color: transparent;
+            border-bottom: none;
+        }
+        .card-header h3, .card-header h5 {
+            margin: 0;
+        }
+        .map-container {
+            height: 60vh;
+            background-color: #e9ecef;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .shipment-item {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s;
+        }
+        .shipment-item:hover {
+            background-color: #f1f1f1;
+        }
+        .shipment-item h5 {
+            margin: 0;
+        }
+        .notification {
+            background-color: #e74c3c;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+        .stats-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .stats-card h4 {
+            margin: 0 0 10px;
+            font-size: 24px;
+        }
+        .stats-card p {
+            margin: 0;
+            font-size: 20px;
+            color: #ff6f61;
+        }
+        .graph-container {
+            height: 200px;
+            background-color: #e9ecef;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            color: #555;
+        }
+        .to-do-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .to-do-list li {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .to-do-list li p {
+            margin: 0 0 5px;
+        }
+        .to-do-list li small {
+            color: #999;
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="#">Freightic</a>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link active" href="#" onclick="showPage('tracking')">Pelacakan</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="showPage('dashboard')">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="showPage('shipment')">Pengiriman</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="showPage('inventory')">Inventaris</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="showPage('analytics')">Analitik</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div id="tracking" class="page active">
+        <div class="tracking-input">
+            <input type="text" class="form-control" placeholder="Masukkan ID pelacakan" id="trackingID">
+            <button class="btn btn-primary" onclick="trackShipment()">Submit</button>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Pelacakan Setiap Kapal</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="map-container" id="map"></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Data Misi</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>Catatan pergerakan kapal.</p>
+                        <p>Pemetaan perjalanan dengan rute yang ditentukan.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Rute</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="shipment-item">
+                            <h5>Rute 1</h5>
+                            <p>Daftar rute yang harus diikuti.</p>
+                            <p>Rencana rute berikutnya: Pelabuhan Jakarta ke Pelabuhan Surabaya.</p>
+                        </div>
+                        <div class="shipment-item">
+                            <h5>Rute 2</h5>
+                            <p>Daftar rute yang harus diikuti.</p>
+                            <p>Rencana rute berikutnya: Pelabuhan Surabaya ke Pelabuhan Makassar.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Keterlambatan</h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Analisis Keterlambatan</th>
+                                    <th>Penyebab</th>
+                                    <th>Langkah Korektif</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Cuaca Buruk</td>
+                                    <td>Angin kencang dan hujan lebat di Laut Jawa.</td>
+                                    <td>Menunda keberangkatan hingga cuaca membaik.</td>
+                                </tr>
+                                <tr>
+                                    <td>Kerusakan Mesin</td>
+                                    <td>Mesin kapal mengalami kerusakan di tengah perjalanan.</td>
+                                    <td>Melakukan perbaikan darurat di pelabuhan terdekat.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Notifikasi Jalur</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="notification">
+                            <p>Pemberitahuan: Kapal telah keluar rute di lokasi Selat Sunda.</p>
+                            <p>Tindakan Korektif: Mengarahkan kembali ke rute yang benar melalui koordinasi dengan kapal pengawal.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="stats-card">
+                    <h4>Total Kapal Berlayar</h4>
+                    <p>123 Kapal</p>
+                </div>
+                <div class="stats-card">
+                    <h4>Total Kapal Berlabuh</h4>
+                    <p>87 Kapal</p>
+                </div>
+                <div class="stats-card">
+                    <h4>Total Kapal Tertunda</h4>
+                    <p>10 Kapal</p>
+                </div>
+
+                <div class="graph-container" id="revenue-chart">
+                    <p>Grafik Pendapatan Mingguan</p>
+                </div>
+
+                <ul class="to-do-list">
+                    <li>
+                        <p>Tugas: Periksa kondisi cuaca untuk rute berikutnya.</p>
+                        <small>Due: 28 Juni 2024</small>
+                    </li>
+                    <li>
+                        <p>Tugas: Pastikan perbaikan mesin selesai sebelum berlayar.</p>
+                        <small>Due: 30 Juni 2024</small>
+                    </li>
+                    <li>
+                        <p>Tugas: Konfirmasi jadwal keberangkatan dengan pelabuhan tujuan.</p>
+                        <small>Due: 1 Juli 2024</small>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="dashboard" class="page">
+        <h2>Dashboard</h2>
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="stats-card">
+                    <h4>Jumlah Pengiriman</h4>
+                    <p>721</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="stats-card">
+                    <h4>Jumlah Pelanggan</h4>
+                    <p>213</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="stats-card">
+                    <h4>Pengiriman Tertunda</h4>
+                    <p>32</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="stats-card">
+                    <h4>Pendapatan</h4>
+                    <p>$2.32m</p>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h5>Pengiriman Terbaru</h5>
+            </div>
+            <div class="card-body">
+                <div class="shipment-item">
+                    <h5>ORD1322031</h5>
+                    <p>Jean Pendragon - Gajahmungkur, ID</p>
+                    <p>Est. Arrival: 21 Aug 2023</p>
+                </div>
+                <div class="shipment-item">
+                    <h5>ORD3421322</h5>
+                    <p>Wizard King - Yogyakarta, ID</p>
+                    <p>Est. Arrival: 19 Aug 2023</p>
+                </div>
+                <div class="shipment-item">
+                    <h5>ORD4323214</h5>
+                    <p>Lumiere - Lombok Timur, ID</p>
+                    <p>Est. Arrival: 17 Aug 2023</p>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h5>Transaksi Terbaru</h5>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Pelanggan</th>
+                            <th>Tanggal</th>
+                            <th>Jenis</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ryan Harris</td>
+                            <td>24 Nov 2023</td>
+                            <td>Pembelian</td>
+                            <td>$132.83</td>
+                            <td><span class="badge badge-success">Sukses</span></td>
+                        </tr>
+                        <tr>
+                            <td>Michael King</td>
+                            <td>19 Nov 2023</td>
+                            <td>Pembelian</td>
+                            <td>$85.80</td>
+                            <td><span class="badge badge-warning">Tertunda</span></td>
+                        </tr>
+                        <tr>
+                            <td>Julie Love</td>
+                            <td>15 Nov 2023</td>
+                            <td>Pembelian</td>
+                            <td>$205.50</td>
+                            <td><span class="badge badge-danger">Gagal</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="shipment" class="page">
+        <h2>Pengiriman</h2>
+        <p>Daftar pengiriman dan statusnya.</p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID Pengiriman</th>
+                    <th>Pengirim</th>
+                    <th>Penerima</th>
+                    <th>Jenis Pengiriman</th>
+                    <th>Asal</th>
+                    <th>Tujuan</th>
+                    <th>Tanggal Tiba</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>TRK12345051</td>
+                    <td>Sarah Johnson</td>
+                    <td>Mark Davis</td>
+                    <td>Elektronik</td>
+                    <td>Gudang Tech Solutions Inc.</td>
+                    <td>Toko Elektronik Best Buy</td>
+                    <td>10 Mar 2023</td>
+                    <td>Delivered</td>
+                </tr>
+                <tr>
+                    <td>TRK12345052</td>
+                    <td>Laura Adams</td>
+                    <td>Eric Miller</td>
+                    <td>Produk Segar</td>
+                    <td>Peternakan Fresh Harvest</td>
+                    <td>SuperMart</td>
+                    <td>25 Feb 2023</td>
+                    <td>Delivered</td>
+                </tr>
+                <tr>
+                    <td>TRK12345053</td>
+                    <td>Mark Steven</td>
+                    <td>Emma Lewis</td>
+                    <td>Mesin Industri</td>
+                    <td>Gudang Heavy Equipment Co.</td>
+                    <td>Situs Konstruksi</td>
+                    <td>10 Feb 2023</td>
+                    <td>Delivered</td>
+                </tr>
+                <tr>
+                    <td>TRK12345054</td>
+                    <td>Amy Carter</td>
+                    <td>John Harris</td>
+                    <td>Perlengkapan Medis</td>
+                    <td>Gudang MediSupplies Inc.</td>
+                    <td>Rumah Sakit Kota</td>
+                    <td>31 Jan 2023</td>
+                    <td>Delivered</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="inventory" class="page">
+        <h2>Inventaris</h2>
+        <p>Detail inventaris dan status stok.</p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Deskripsi</th>
+                    <th>Kuantitas</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Elektronik</td>
+                    <td>Komputer, Tablet, Ponsel</td>
+                    <td>150</td>
+                    <td><span class="badge badge-success">Tersedia</span></td>
+                </tr>
+                <tr>
+                    <td>Perlengkapan Medis</td>
+                    <td>Masker, Sarung Tangan, APD</td>
+                    <td>300</td>
+                    <td><span class="badge badge-warning">Hampir Habis</span></td>
+                </tr>
+                <tr>
+                    <td>Produk Segar</td>
+                    <td>Sayur, Buah, Daging</td>
+                    <td>200</td>
+                    <td><span class="badge badge-danger">Habis</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="analytics" class="page">
+        <h2>Analitik</h2>
+        <p>Grafik dan analisis performa pengiriman.</p>
+        <div class="graph-container">
+            <p>Grafik Analitik</p>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+    function showPage(pageId) {
+        document.querySelectorAll('.page').forEach(function(page) {
+            page.classList.remove('active');
+        });
+        document.getElementById(pageId).classList.add('active');
+
+        document.querySelectorAll('.nav-link').forEach(function(nav) {
+            nav.classList.remove('active');
+        });
+        document.querySelector(`.nav-link[onclick="showPage('${pageId}')"]`).classList.add('active');
+    }
+
+    // Inisialisasi peta
+    var map = L.map('map').setView([-6.1751, 106.8650], 5); // Contoh di Jakarta
+
+    // Tambahkan tiles OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Data contoh pergerakan kapal
+    var shipRoute = [
+        [-6.1751, 106.8650],
+        [-7.2575, 112.7521],
+        [-5.1477, 119.4328]
+    ];
+
+    // Tambahkan rute kapal ke peta
+    var polyline = L.polyline(shipRoute, {color: 'red'}).addTo(map);
+    map.fitBounds(polyline.getBounds());
+
+    function trackShipment() {
+        var trackingID = document.getElementById('trackingID').value;
+        alert('Melacak ID pengiriman: ' + trackingID);
+        // Implementasikan logika pelacakan di sini
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en"> 
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../assets/images/favicon/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/images/favicon/favicon.png" type="image/x-icon">
+    <title>RB Control Hub</title>
+    <!-- Google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/font-awesome.css">
+    <!-- ico-font-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/icofont.css">
+    <!-- Themify icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/themify.css">
+    <!-- Flag icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/flag-icon.css">
+    <!-- Feather icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/feather-icon.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/scrollbar.css">
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/bootstrap.css">
+    <!-- App css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link id="color" rel="stylesheet" href="../assets/css/color-1.css" media="screen">
+    <!-- Responsive css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
+    <!-- Leaflet css -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <style>
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f5f7;
+            color: #333;
+        }
+        .tracking-input {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .tracking-input input {
+            flex: 1;
+            margin-right: 10px;
+        }
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .card-header {
+            background-color: transparent;
+            border-bottom: none;
+        }
+        .card-header h3 {
+            margin: 0;
+        }
+        .map-container {
+            height: 60vh;
+            background-color: #e9ecef;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .shipment-item {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s;
+        }
+        .shipment-item:hover {
+            background-color: #f1f1f1;
+        }
+        .shipment-item h5 {
+            margin: 0;
+        }
+        .notification {
+            background-color: #e74c3c;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+        .stats-card {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .stats-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .stats-card h4 {
+            margin: 0 0 10px;
+            font-size: 22px;
+            font-weight: 600;
+            color: #333;
+        }
+        .stats-card p {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 500;
+            color: #e74c3c;
+        }
+        .graph-container {
+            height: 200px;
+            background-color: #e9ecef;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            color: #555;
+        }
+        .to-do-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .to-do-list li {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .to-do-list li p {
+            margin: 0 0 5px;
+        }
+        .to-do-list li small {
+            color: #999;
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+    </style>
+  </head>
+  <body>
+    <!-- tap on top starts-->
+    <div class="tap-top"><i data-feather="chevrons-up"></i></div>
+    <!-- tap on tap ends-->
+    <!-- Loader starts-->
+    <div class="loader-wrapper">
+      <div class="loader"></div>
+    </div>
+    <!-- Loader ends-->
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+      <!-- Page Header Start-->
+      <div class="page-header">
+        <div class="header-wrapper row m-0">
+          <form class="form-inline search-full col" action="#" method="get">
+            <div class="form-group w-100">
+              <div class="Typeahead Typeahead--twitterUsers">
+                <div class="u-posRelative">
+                  <input class="demo-input Typeahead-input form-control-plaintext w-100" type="text" placeholder="Search Koho .." name="q" title="" autofocus>
+                  <div class="spinner-border Typeahead-spinner" role="status"><span class="sr-only">Loading...</span></div>
+                  <i class="close-search" data-feather="x"></i>
+                </div>
+                <div class="Typeahead-menu"></div>
+              </div>
+            </div>
+          </form>
+          <div class="header-logo-wrapper col-auto p-0">
+            <div class="logo-wrapper"><a href="index.html"><img class="img-fluid for-light hg-50" src="../assets/images/logo/logo.png" alt=""><img class="img-fluid for-dark hg-50" src="../assets/images/logo/logo-dark.png" alt=""></a></div>
+            <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i></div>
+          </div>
+          <div class="left-header col horizontal-wrapper ps-0">
+            <div class="input-group">     
+              <input class="form-control" type="text" placeholder="Search Here........"><span class="input-group-text mobile-search"><i data-feather="search"></i></span>
+            </div>
+          </div>
+          <div class="nav-right col-6 pull-right right-header p-0">
+            <ul class="nav-menus">
+              <li>
+                <div class="mode"><i data-feather="moon"></i></div>
+              </li>
+              <li class="onhover-dropdown">
+                <div class="notification-box"><i data-feather="star"></i></div>
+                <div class="onhover-show-div bookmark-flip">
+                  <div class="flip-card">
+                    <div class="flip-card-inner">
+                      <div class="front">
+                        <ul class="droplet-dropdown bookmark-dropdown">
+                          <li class="gradient-primary">
+                            <i data-feather="star"></i>
+                            <h3 class="mb-0">Bookmark</h3>
+                          </li>
+                          <li>
+                            <div class="row">
+                              <div class="col-4 text-center"><a href="file-manager.html"><i data-feather="file-text"></i></a></div>
+                              <div class="col-4 text-center"><a href="general-widget.html"><i data-feather="activity"></i></a></div>
+                              <div class="col-4 text-center"><a href="user-profile.html"><i data-feather="users"></i></a></div>
+                              <div class="col-4 text-center"><a href="clipboard.html"><i data-feather="clipboard"></i></a></div>
+                              <div class="col-4 text-center"><a href="to-do.html"><i data-feather="anchor"></i></a></div>
+                              <div class="col-4 text-center"><a href="internationalization.html"><i data-feather="settings"></i></a></div>
+                            </div>
+                          </li>
+                          <li class="text-center">
+                            <button class="flip-btn" id="flip-btn">Add New Bookmark</button>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="back">
+                        <ul>
+                          <li>
+                            <div class="droplet-dropdown bookmark-dropdown flip-back-content">
+                              <input type="text" placeholder="search...">
+                            </div>
+                          </li>
+                          <li class="pb-0">
+                            <button class="d-block flip-back" id="flip-back">Back          </button>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="onhover-dropdown">
+                <div class="notification-box"><i data-feather="bell"></i><span class="badge rounded-pill badge-primary">4                                </span></div>
+                <ul class="notification-dropdown onhover-show-div">
+                  <li>
+                    <i data-feather="bell">            </i>
+                    <h3 class="mb-0">Notifications</h3>
+                  </li>
+                  <li>
+                    <a href="email_read.html">
+                      <p><i class="fa fa-circle-o me-3 font-primary"> </i>Delivery processing <span class="pull-right">10 min.</span></p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="email_read.html">
+                      <p><i class="fa fa-circle-o me-3 font-success"></i>Order Complete<span class="pull-right">1 hr</span></p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="email_read.html">
+                      <p><i class="fa fa-circle-o me-3 font-info"></i>Tickets Generated<span class="pull-right">3 hr</span></p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="email_read.html">
+                      <p><i class="fa fa-circle-o me-3 font-danger"></i>Delivery Complete<span class="pull-right">6 hr</span></p>
+                    </a>
+                  </li>
+                  <li><a class="btn btn-primary" href="email_read.html">Check all notification</a></li>
+                </ul>
+              </li>
+              <li class="onhover-dropdown">
+                <i data-feather="message-square"></i>
+                <ul class="chat-dropdown onhover-show-div">
+                  <li>
+                    <i data-feather="message-square"></i>
+                    <h3 class="mb-0">Message Box</h3>
+                  </li>
+                  <li>
+                    <div class="d-flex">
+                      <img class="img-fluid rounded-circle me-3" src="../assets/images/user/6.jpg" alt="">
+                      <div class="status-circle online"></div>
+                      <div class="flex-grow-1">
+                        <a href="user-profile.html">
+                          <span>Ain Chavez</span>
+                          <p>Do you want to go see movie?</p>
+                        </a>
+                      </div>
+                      <p class="f-12 font-success">2 mins ago</p>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="d-flex">
+                      <img class="img-fluid rounded-circle me-3" src="../assets/images/user/1.jpg" alt="">
+                      <div class="status-circle online"></div>
+                      <div class="flex-grow-1">
+                        <a href="user-profile.html">
+                          <span>Erica Hughes</span>
+                          <p>Thank you for rating us.</p>
+                        </a>
+                      </div>
+                      <p class="f-12 font-success">5 mins ago</p>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="d-flex">
+                      <img class="img-fluid rounded-circle me-3" src="../assets/images/user/7.jpg" alt="">
+                      <div class="status-circle offline"></div>
+                      <div class="flex-grow-1">
+                        <a href="user-profile.html">
+                          <span>Kori Thomas</span>
+                          <p>What`s the project report update?</p>
+                        </a>
+                      </div>
+                      <p class="f-12 font-danger">9 mins ago</p>
+                    </div>
+                  </li>
+                  <li class="text-center"> <a class="btn btn-primary" href="chat.html">View All     </a></li>
+                </ul>
+              </li>
+              <li class="maximize"><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i data-feather="maximize"></i></a></li>
+              <li class="profile-nav onhover-dropdown p-0 me-0">
+                <div class="d-flex profile-media">
+                  <img class="b-r-50" src="../assets/images/dashboard/profile.png" alt="">
+                  <div class="flex-grow-1">
+                    <span>Dudik Walter</span>
+                    <p class="mb-0 font-roboto">Admin <i class="middle fa fa-angle-down"></i></p>
+                  </div>
+                </div>
+                <ul class="profile-dropdown onhover-show-div">
+                  <li><a href="user-profile.html"><i data-feather="user"></i><span>Account </span></a></li>
+                  <li><a href="email_inbox.html"><i data-feather="mail"></i><span>Inbox</span></a></li>
+                  <li><a href="kanban.html"><i data-feather="file-text"></i><span>Taskboard</span></a></li>
+                  <li><a href="login.html"><i data-feather="log-in"> </i><span>Log in</span></a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <script class="result-template" type="text/x-handlebars-template">
+            <div class="ProfileCard u-cf">                        
+            <div class="ProfileCard-avatar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-airplay m-0"><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"></path><polygon points="12 15 17 21 7 21 12 15"></polygon></svg></div>
+            <div class="ProfileCard-details">
+            <div class="ProfileCard-realName">{{name}}</div>
+            </div>
+            </div>
+          </script>
+          <script class="empty-template" type="text/x-handlebars-template"><div class="EmptyMessage">Your search turned up 0 results. This most likely means the backend is down, yikes!</div></script>
+        </div>
+      </div>
+      <!-- Page Header Ends                              -->
+      <!-- Page Body Start-->
+      <div class="page-body-wrapper">
+        <!-- Page Sidebar Start-->
+        <div class="sidebar-wrapper">
+          <div>
+            <div class="logo-wrapper">
+              <a href="#"><img class="img-fluid for-light hg-50" src="../assets/images/logo/logo.png" alt=""><img class="img-fluid for-dark hg-50" src="../assets/images/logo/logo-dark.png" alt=""></a>
+              <div class="back-btn"><i class="fa fa-angle-left"></i></div>
+              <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="align-left"> </i></div>
+            </div>
+            <div class="logo-icon-wrapper"><a href="#"><img class="img-fluid for-light" src="../assets/images/logo/logo-icon.png" alt=""><img class="img-fluid for-dark" src="../assets/images/logo/logo-icon-dark.png" alt=""></a></div>
+            <nav class="sidebar-main">
+              <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
+              <div id="sidebar-menu">
+                <ul class="sidebar-links" id="simple-bar">
+                  <li class="back-btn">
+                    <a href="#"><img class="img-fluid for-light" src="../assets/images/logo/logo-icon.png" alt=""><img class="img-fluid for-dark" src="../assets/images/logo/logo-icon-dark.png" alt=""></a>
+                    <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Olah Gerak Kapal</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="home"></i><span>Home</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Overview</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="pergerakan-kapal.html"><i data-feather="map"></i><span>Pergerakan Kapal</span></a>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="pergerakan-kapal-cuaca.html"><i data-feather="cloud"></i><span>Cuaca</span></a>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="pergerakan-kapal-perhitungan-bbm.html"><i data-feather="anchor"></i><span>Kapal & BBM</span></a>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="compass"></i><span>Pointing Kapal</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Sorting Kapal</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="map-pin"></i><span>Mastering Kapal</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Status Kapal</a></li>
+                      <li><a href="#">GPS</a></li>
+                      <li><a href="#">Selling Time & Quota BBM</a></li>
+                      <li><a href="#">Route Terdekat</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Repair & Maintenance</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="home"> </i><span>Home</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Overview</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="rm-kapal.html"><i data-feather="anchor"> </i><span>Kapal</span></a>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="rm-maintenance.html"><i data-feather="settings"> </i><span>Maintenance</span></a>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="bell"> </i><span>Notifikasi</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Notifikasi Baru</a></li>
+                      <li><a href="#">Notifikasi Terkirim</a></li>
+                      <li><a href="#">Notifikasi Dibaca</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="monitor"> </i><span>Monitoring & Repair</span></a>
+                    <ul class="sidebar-submenu">
+                      <li>
+                        <a href="#">Monitoring Request</a>
+                        <ul class="sidebar-submenu">
+                          <li><a href="#">Monitoring Maintenance</a></li>
+                          <li><a href="#">Monitoring Docking</a></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a href="#">Repair Estimasi</a>
+                        <ul class="sidebar-submenu">
+                          <li><a href="#">Pemeriksaan</a></li>
+                          <li><a href="#">Perkiraan Biaya</a></li>
+                          <li><a href="#">Estimasi Biaya Perbaikan</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="check-square"> </i><span>Approval</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Persetujuan 1x24 Jam</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="dollar-sign"> </i><span>Finance</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Kontrol Estimasi Biaya</a></li>
+                      <li><a href="#">Penjelasan Estimasi Repair List</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="settings"> </i><span>Pengaturan</span></a>
+                    <ul class="sidebar-submenu">
+                      <li>
+                        <a href="#">Koneksi RM & Pergerakan Kapal</a>
+                        <ul class="sidebar-submenu">
+                          <li><a href="#">Notifikasi Peringatan Maintenance</a></li>
+                          <li><a href="#">Lembar Kerja Jadwal Input (2.5/5 Tahun)</a></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a href="#">Kategori Maintenance (MK/Kapal)</a>
+                        <ul class="sidebar-submenu">
+                          <li><a href="#">Maintenance oleh MK</a></li>
+                          <li><a href="#">Maintenance oleh Kapal</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="message-square"> </i><span>Chat</span></a>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Logistic</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="logistic-home.html"><i data-feather="home"> </i><span>Dashboard</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="logistic-layout-gudang.html"><i data-feather="box"> </i><span>Layout Gudang</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="logistic-pengeluaran-barang.html"><i data-feather="box"> </i><span>Pengelolaan Barang</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="logistic-penerimaan-barang.html"><i data-feather="box"> </i><span>Penerimaan Barang</span></a>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Settings</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="edit"> </i><span>Roles</span></a></li>
+                  <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="sunrise"> </i><span>Documentation</span></a></li>
+                  <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="users"> </i><span>Support Ticket      </span></a></li>
+                </ul>
+                <div class="sidebar-img-section">
+                  <div class="sidebar-img-content">
+                    <img class="img-fluid" src="../assets/images/dashboard/upgrade/2.png" alt="">
+                    <h4>RB Control Hub <span style="font-size: 13px;"><br>Dashboard App</span></h4>
+                    <a class="btn btn-primary" href="#">Version 1.0</a>
+                  </div>
+                </div>
+              </div>
+              <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
+            </nav>
+          </div>
+        </div>
+        <!-- Page Sidebar Ends-->
+        <div class="page-body">
+          <div class="container-fluid">
+            <div class="page-title">
+              <div class="row">
+                <div class="col-6">
+                  <h3>Pergerakan Kapal</h3>
+                </div>
+                <div class="col-6">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html"><i data-feather="home"></i></a></li>
+                    <li class="breadcrumb-item">Olah Gerak Kapal</li>
+                    <li class="breadcrumb-item active">Pergerakan kapal</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Container-fluid starts-->
+          <div class="container-fluid">
+            <!-- Integrated content from test_.html starts -->
+            <div id="tracking" class="page active">
+              <div class="tracking-input">
+                  <input type="text" class="form-control" placeholder="Masukkan ID pelacakan" id="trackingID">
+                  <button class="btn btn-primary" onclick="trackShipment()">Submit</button>
+              </div>
+
+              <div class="row">
+                  <div class="col-lg-8">
+                      <div class="card">
+                          <div class="card-header">
+                              <h3>Pelacakan Setiap Kapal</h3>
+                          </div>
+                          <div class="card-body">
+                              <div class="map-container" id="map"></div>
+                          </div>
+                      </div>
+
+                      <div class="card">
+                          <div class="card-header">
+                              <h5>Data Misi</h5>
+                          </div>
+                          <div class="card-body">
+                              <p>Catatan pergerakan kapal.</p>
+                              <p>Pemetaan perjalanan dengan rute yang ditentukan.</p>
+                          </div>
+                      </div>
+
+                      <div class="card">
+                          <div class="card-header">
+                              <h5>Rute</h5>
+                          </div>
+                          <div class="card-body">
+                              <div class="shipment-item">
+                                  <h5>Rute 1</h5>
+                                  <p>Daftar rute yang harus diikuti.</p>
+                                  <p>Rencana rute berikutnya: Pelabuhan Jakarta ke Pelabuhan Surabaya.</p>
+                              </div>
+                              <div class="shipment-item">
+                                  <h5>Rute 2</h5>
+                                  <p>Daftar rute yang harus diikuti.</p>
+                                  <p>Rencana rute berikutnya: Pelabuhan Surabaya ke Pelabuhan Makassar.</p>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="card">
+                          <div class="card-header">
+                              <h5>Keterlambatan</h5>
+                          </div>
+                          <div class="card-body">
+                              <table class="table">
+                                  <thead>
+                                      <tr>
+                                          <th>Analisis Keterlambatan</th>
+                                          <th>Penyebab</th>
+                                          <th>Langkah Korektif</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr>
+                                          <td>Cuaca Buruk</td>
+                                          <td>Angin kencang dan hujan lebat di Laut Jawa.</td>
+                                          <td>Menunda keberangkatan hingga cuaca membaik.</td>
+                                      </tr>
+                                      <tr>
+                                          <td>Kerusakan Mesin</td>
+                                          <td>Mesin kapal mengalami kerusakan di tengah perjalanan.</td>
+                                          <td>Melakukan perbaikan darurat di pelabuhan terdekat.</td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+
+                      <div class="card">
+                          <div class="card-header">
+                              <h5>Notifikasi Jalur</h5>
+                          </div>
+                          <div class="card-body">
+                              <div class="notification">
+                                  <p>Pemberitahuan: Kapal telah keluar rute di lokasi Selat Sunda.</p>
+                                  <p>Tindakan Korektif: Mengarahkan kembali ke rute yang benar melalui koordinasi dengan kapal pengawal.</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-lg-4">
+                    <div class="stats-card">
+                      <h4>Total Kapal Berlayar</h4>
+                      <p>123 Kapal</p>
+                    </div>
+                    <div class="stats-card">
+                      <h4>Total Kapal Berlabuh</h4>
+                      <p>87 Kapal</p>
+                    </div>
+                    <div class="stats-card">
+                      <h4>Total Kapal Tertunda</h4>
+                      <p>10 Kapal</p>
+                    </div>
+
+                      <div class="graph-container" id="revenue-chart">
+                          <p>Grafik Pendapatan Mingguan</p>
+                      </div>
+
+                      <ul class="to-do-list">
+                          <li>
+                              <p>Tugas: Periksa kondisi cuaca untuk rute berikutnya.</p>
+                              <small>Due: 28 Juni 2024</small>
+                          </li>
+                          <li>
+                              <p>Tugas: Pastikan perbaikan mesin selesai sebelum berlayar.</p>
+                              <small>Due: 30 Juni 2024</small>
+                          </li>
+                          <li>
+                              <p>Tugas: Konfirmasi jadwal keberangkatan dengan pelabuhan tujuan.</p>
+                              <small>Due: 1 Juli 2024</small>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+            </div>
+            <!-- Integrated content from test_.html ends -->
+          </div>
+          <!-- Container-fluid Ends-->
+        </div>
+        <!-- footer start-->
+        <footer class="footer">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-2 p-0 footer-left"></div>
+              <div class="col-10 p-0 footer-right">
+                <p class="mb-0">Copyright 2023 © RB Control Hub by LTI</p>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+    
+    <!-- latest jquery-->
+    <script src="../assets/js/jquery-3.6.0.min.js"></script>
+    <script src="../assets/js/bootstrap/popper.min.js"></script>
+    <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+    <!-- feather icon js-->
+    <script src="../assets/js/icons/feather-icon/feather.min.js"></script>
+    <script src="../assets/js/icons/feather-icon/feather-icon.js"></script>
+    <script src="../assets/js/scrollbar/simplebar.js"></script>
+    <script src="../assets/js/scrollbar/custom.js"></script>
+    <!-- Sidebar jquery-->
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/sidebar-menu.js"></script>
+    <script src="../assets/js/tooltip-init.js"></script>
+    <!-- Theme js-->
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/theme-customizer/customizer.js"></script>
+    <!-- Leaflet js -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+      function showPage(pageId) {
+          document.querySelectorAll('.page').forEach(function(page) {
+              page.classList.remove('active');
+          });
+          document.getElementById(pageId).classList.add('active');
+
+          document.querySelectorAll('.nav-link').forEach(function(nav) {
+              nav.classList.remove('active');
+          });
+          document.querySelector(`.nav-link[onclick="showPage('${pageId}')"]`).classList.add('active');
+      }
+
+      // Inisialisasi peta
+      var map = L.map('map').setView([-6.1751, 106.8650], 5); // Contoh di Jakarta
+
+      // Tambahkan tiles OpenStreetMap
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(map);
+
+      // Data contoh pergerakan kapal
+      var shipRoute = [
+          [-6.1751, 106.8650],
+          [-7.2575, 112.7521],
+          [-5.1477, 119.4328]
+      ];
+
+      // Tambahkan rute kapal ke peta
+      var polyline = L.polyline(shipRoute, {color: 'red'}).addTo(map);
+      map.fitBounds(polyline.getBounds());
+
+      function trackShipment() {
+          var trackingID = document.getElementById('trackingID').value;
+          alert('Melacak ID pengiriman: ' + trackingID);
+          // Implementasikan logika pelacakan di sini
+      }
+    </script>
+  </body>
+</html>

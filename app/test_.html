@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logistic Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            margin-top: 0;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .row {
+            display: flex;
+            justify-content: space-between;
+        }
+        .column {
+            width: 48%;
+        }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div class="column">
+            <div class="container">
+                <h2>Purchase Order (PO)</h2>
+                <form id="poForm">
+                    <div class="form-group">
+                        <label for="poNumber">Nomor PO:</label>
+                        <input type="text" id="poNumber" name="poNumber" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="poDate">Tanggal PO:</label>
+                        <input type="date" id="poDate" name="poDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="supplier">Supplier:</label>
+                        <input type="text" id="supplier" name="supplier" required>
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
+                <table id="poTable">
+                    <thead>
+                        <tr>
+                            <th>Nomor PO</th>
+                            <th>Tanggal PO</th>
+                            <th>Supplier</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data PO akan ditambahkan di sini -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="container">
+                <h2>Material Request (MR)</h2>
+                <form id="mrForm">
+                    <div class="form-group">
+                        <label for="mrId">ID MR:</label>
+                        <input type="text" id="mrId" name="mrId" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="itemName">Nama Barang:</label>
+                        <input type="text" id="itemName" name="itemName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Jumlah Barang:</label>
+                        <input type="number" id="quantity" name="quantity" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="requestDate">Tanggal Permintaan:</label>
+                        <input type="date" id="requestDate" name="requestDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="requester">Pemohon:</label>
+                        <input type="text" id="requester" name="requester" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status:</label>
+                        <select id="status" name="status" required>
+                            <option value="Pending">Pending</option>
+                            <option value="Approved">Approved</option>
+                            <option value="Rejected">Rejected</option>
+                        </select>
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
+                <table id="mrTable">
+                    <thead>
+                        <tr>
+                            <th>ID MR</th>
+                            <th>Nama Barang</th>
+                            <th>Jumlah Barang</th>
+                            <th>Tanggal Permintaan</th>
+                            <th>Pemohon</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data MR akan ditambahkan di sini -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="column">
+            <div class="container">
+                <h2>Laporan Keuangan</h2>
+                <form id="financeReportForm">
+                    <div class="form-group">
+                        <label for="reportType">Jenis Laporan:</label>
+                        <select id="reportType" name="reportType" required>
+                            <option value="Laporan Keuangan Bulanan">Laporan Keuangan Bulanan</option>
+                            <option value="Laporan Keuangan Tahunan">Laporan Keuangan Tahunan</option>
+                            <option value="Laporan Pajak">Laporan Pajak</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reportDate">Tanggal Laporan:</label>
+                        <input type="date" id="reportDate" name="reportDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reportDetails">Detail Laporan:</label>
+                        <textarea id="reportDetails" name="reportDetails" required></textarea>
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
+                <table id="financeTable">
+                    <thead>
+                        <tr>
+                            <th>Jenis Laporan</th>
+                            <th>Tanggal Laporan</th>
+                            <th>Detail Laporan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data laporan keuangan akan ditambahkan di sini -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="container">
+                <h2>Pengelolaan Pembayaran</h2>
+                <form id="paymentForm">
+                    <div class="form-group">
+                        <label for="paymentStage">Tahap Pembayaran:</label>
+                        <select id="paymentStage" name="paymentStage" required>
+                            <option value="DP 1">DP 1</option>
+                            <option value="DP 2">DP 2</option>
+                            <option value="Pelunasan">Pelunasan</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="paymentDate">Tanggal Pembayaran:</label>
+                        <input type="date" id="paymentDate" name="paymentDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Jumlah Pembayaran:</label>
+                        <input type="number" id="amount" name="amount" required>
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
+                <table id="paymentTable">
+                    <thead>
+                        <tr>
+                            <th>Tahap Pembayaran</th>
+                            <th>Tanggal Pembayaran</th>
+                            <th>Jumlah Pembayaran</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data pembayaran akan ditambahkan di sini -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const poForm = document.getElementById('poForm');
+            const mrForm = document.getElementById('mrForm');
+            const financeReportForm = document.getElementById('financeReportForm');
+            const paymentForm = document.getElementById('paymentForm');
+
+            const poTable = document.getElementById('poTable').getElementsByTagName('tbody')[0];
+            const mrTable = document.getElementById('mrTable').getElementsByTagName('tbody')[0];
+            const financeTable = document.getElementById('financeTable').getElementsByTagName('tbody')[0];
+            const paymentTable = document.getElementById('paymentTable').getElementsByTagName('tbody')[0];
+
+            let poList = [];
+            let mrList = [];
+            let financeList = [];
+            let paymentList = [];
+
+            poForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const formData = new FormData(poForm);
+                const poData = {
+                    poNumber: formData.get('poNumber'),
+                    poDate: formData.get('poDate'),
+                    supplier: formData.get('supplier')
+                };
+
+                poList.push(poData);
+                updateTable(poTable, poList);
+                poForm.reset();
+                alert('Purchase Order submitted successfully!');
+            });
+
+            mrForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const formData = new FormData(mrForm);
+                const mrData = {
+                    mrId: formData.get('mrId'),
+                    itemName: formData.get('itemName'),
+                    quantity: formData.get('quantity'),
+                    requestDate: formData.get('requestDate'),
+                    requester: formData.get('requester'),
+                    status: formData.get('status')
+                };
+
+                mrList.push(mrData);
+                updateTable(mrTable, mrList);
+                mrForm.reset();
+                alert('Material Request submitted successfully!');
+            });
+
+            financeReportForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const formData = new FormData(financeReportForm);
+                const financeData = {
+                    reportType: formData.get('reportType'),
+                    reportDate: formData.get('reportDate'),
+                    reportDetails: formData.get('reportDetails')
+                };
+
+                financeList.push(financeData);
+                updateTable(financeTable, financeList);
+                financeReportForm.reset();
+                alert('Financial Report submitted successfully!');
+            });
+
+            paymentForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const formData = new FormData(paymentForm);
+                const paymentData = {
+                    paymentStage: formData.get('paymentStage'),
+                    paymentDate: formData.get('paymentDate'),
+                    amount: formData.get('amount')
+                };
+
+                paymentList.push(paymentData);
+                updateTable(paymentTable, paymentList);
+                paymentForm.reset();
+                alert('Payment Record submitted successfully!');
+            });
+
+            function updateTable(table, dataList) {
+                table.innerHTML = '';
+                dataList.forEach(function (data) {
+                    const row = table.insertRow();
+                    for (const key in data) {
+                        const cell = row.insertCell();
+                        cell.textContent = data[key];
+                    }
+                    const actionCell = row.insertCell();
+                    const deleteButton = document.createElement('button');
+                    deleteButton.textContent = 'Delete';
+                    deleteButton.classList.add('delete-btn');
+                    deleteButton.addEventListener('click', function () {
+                        const rowIndex = row.rowIndex - 1;
+                        dataList.splice(rowIndex, 1);
+                        updateTable(table, dataList);
+                    });
+                    actionCell.appendChild(deleteButton);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

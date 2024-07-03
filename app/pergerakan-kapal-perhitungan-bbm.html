@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../assets/images/favicon/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/images/favicon/favicon.png" type="image/x-icon">
+    <title>RB Control Hub</title>
+    <!-- Google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/font-awesome.css">
+    <!-- ico-font-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/icofont.css">
+    <!-- Themify icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/themify.css">
+    <!-- Flag icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/flag-icon.css">
+    <!-- Feather icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/feather-icon.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/scrollbar.css">
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/bootstrap.css">
+    <!-- App css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link id="color" rel="stylesheet" href="../assets/css/color-1.css" media="screen">
+    <!-- Responsive css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
+  </head>
+  <body>
+    <!-- tap on top starts-->
+    <div class="tap-top"><i data-feather="chevrons-up"></i></div>
+    <!-- tap on tap ends-->
+    <!-- Loader starts-->
+    <div class="loader-wrapper">
+      <div class="loader"></div>
+    </div>
+    <!-- Loader ends-->
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+      <!-- Page Header Start-->
+      <div class="page-header">
+        <div class="header-wrapper row m-0">
+          <form class="form-inline search-full col" action="#" method="get">
+            <div class="form-group w-100">
+              <div class="Typeahead Typeahead--twitterUsers">
+                <div class="u-posRelative">
+                  <input class="demo-input Typeahead-input form-control-plaintext w-100" type="text" placeholder="Search Koho .." name="q" title="" autofocus>
+                  <div class="spinner-border Typeahead-spinner" role="status"><span class="sr-only">Loading...</span></div>
+                  <i class="close-search" data-feather="x"></i>
+                </div>
+                <div class="Typeahead-menu"></div>
+              </div>
+            </div>
+          </form>
+          <div class="header-logo-wrapper col-auto p-0">
+            <div class="logo-wrapper"><a href="index.html"><img class="img-fluid for-light hg-50" src="../assets/images/logo/logo.png" alt=""><img class="img-fluid for-dark hg-50" src="../assets/images/logo/logo-dark.png" alt=""></a></div>
+            <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i></div>
+          </div>
+          <div class="left-header col horizontal-wrapper ps-0">
+            <div class="input-group">     
+              <input class="form-control" type="text" placeholder="Search Here........"><span class="input-group-text mobile-search"><i data-feather="search"></i></span>
+            </div>
+          </div>
+          <div class="nav-right col-6 pull-right right-header p-0">
+            <ul class="nav-menus">
+              <li>
+                <div class="mode"><i data-feather="moon"></i></div>
+              </li>
+              <li class="onhover-dropdown">
+                <div class="notification-box"><i data-feather="star"></i></div>
+                <div class="onhover-show-div bookmark-flip">
+                  <div class="flip-card">
+                    <div class="flip-card-inner">
+                      <div class="front">
+                        <ul class="droplet-dropdown bookmark-dropdown">
+                          <li class="gradient-primary">
+                            <i data-feather="star"></i>
+                            <h3 class="mb-0">Bookmark</h3>
+                          </li>
+                          <li>
+                            <div class="row">
+                              <div class="col-4 text-center"><a href="file-manager.html"><i data-feather="file-text"></i></a></div>
+                              <div class="col-4 text-center"><a href="general-widget.html"><i data-feather="activity"></i></a></div>
+                              <div class="col-4 text-center"><a href="user-profile.html"><i data-feather="users"></i></a></div>
+                              <div class="col-4 text-center"><a href="clipboard.html"><i data-feather="clipboard"></i></a></div>
+                              <div class="col-4 text-center"><a href="to-do.html"><i data-feather="anchor"></i></a></div>
+                              <div class="col-4 text-center"><a href="internationalization.html"><i data-feather="settings"></i></a></div>
+                            </div>
+                          </li>
+                          <li class="text-center">
+                            <button class="flip-btn" id="flip-btn">Add New Bookmark</button>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="back">
+                        <ul>
+                          <li>
+                            <div class="droplet-dropdown bookmark-dropdown flip-back-content">
+                              <input type="text" placeholder="search...">
+                            </div>
+                          </li>
+                          <li class="pb-0">
+                            <button class="d-block flip-back" id="flip-back">Back          </button>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="onhover-dropdown">
+                <div class="notification-box"><i data-feather="bell"></i><span class="badge rounded-pill badge-primary">4                                </span></div>
+                <ul class="notification-dropdown onhover-show-div">
+                  <li>
+                    <i data-feather="bell">            </i>
+                    <h3 class="mb-0">Notifications</h3>
+                  </li>
+                  <li>
+                    <a href="email_read.html">
+                      <p><i class="fa fa-circle-o me-3 font-primary"> </i>Delivery processing <span class="pull-right">10 min.</span></p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="email_read.html">
+                      <p><i class="fa fa-circle-o me-3 font-success"></i>Order Complete<span class="pull-right">1 hr</span></p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="email_read.html">
+                      <p><i class="fa fa-circle-o me-3 font-info"></i>Tickets Generated<span class="pull-right">3 hr</span></p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="email_read.html">
+                      <p><i class="fa fa-circle-o me-3 font-danger"></i>Delivery Complete<span class="pull-right">6 hr</span></p>
+                    </a>
+                  </li>
+                  <li><a class="btn btn-primary" href="email_read.html">Check all notification</a></li>
+                </ul>
+              </li>
+              <li class="onhover-dropdown">
+                <i data-feather="message-square"></i>
+                <ul class="chat-dropdown onhover-show-div">
+                  <li>
+                    <i data-feather="message-square"></i>
+                    <h3 class="mb-0">Message Box</h3>
+                  </li>
+                  <li>
+                    <div class="d-flex">
+                      <img class="img-fluid rounded-circle me-3" src="../assets/images/user/6.jpg" alt="">
+                      <div class="status-circle online"></div>
+                      <div class="flex-grow-1">
+                        <a href="user-profile.html">
+                          <span>Ain Chavez</span>
+                          <p>Do you want to go see movie?</p>
+                        </a>
+                      </div>
+                      <p class="f-12 font-success">2 mins ago</p>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="d-flex">
+                      <img class="img-fluid rounded-circle me-3" src="../assets/images/user/1.jpg" alt="">
+                      <div class="status-circle online"></div>
+                      <div class="flex-grow-1">
+                        <a href="user-profile.html">
+                          <span>Erica Hughes</span>
+                          <p>Thank you for rating us.</p>
+                        </a>
+                      </div>
+                      <p class="f-12 font-success">5 mins ago</p>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="d-flex">
+                      <img class="img-fluid rounded-circle me-3" src="../assets/images/user/7.jpg" alt="">
+                      <div class="status-circle offline"></div>
+                      <div class="flex-grow-1">
+                        <a href="user-profile.html">
+                          <span>Kori Thomas</span>
+                          <p>What`s the project report update?</p>
+                        </a>
+                      </div>
+                      <p class="f-12 font-danger">9 mins ago</p>
+                    </div>
+                  </li>
+                  <li class="text-center"> <a class="btn btn-primary" href="chat.html">View All     </a></li>
+                </ul>
+              </li>
+              <li class="maximize"><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i data-feather="maximize"></i></a></li>
+              <li class="profile-nav onhover-dropdown p-0 me-0">
+                <div class="d-flex profile-media">
+                  <img class="b-r-50" src="../assets/images/dashboard/profile.png" alt="">
+                  <div class="flex-grow-1">
+                    <span>Dudik Walter</span>
+                    <p class="mb-0 font-roboto">Admin <i class="middle fa fa-angle-down"></i></p>
+                  </div>
+                </div>
+                <ul class="profile-dropdown onhover-show-div">
+                  <li><a href="user-profile.html"><i data-feather="user"></i><span>Account </span></a></li>
+                  <li><a href="email_inbox.html"><i data-feather="mail"></i><span>Inbox</span></a></li>
+                  <li><a href="kanban.html"><i data-feather="file-text"></i><span>Taskboard</span></a></li>
+                  <li><a href="login.html"><i data-feather="log-in"> </i><span>Log in</span></a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <script class="result-template" type="text/x-handlebars-template">
+            <div class="ProfileCard u-cf">                        
+            <div class="ProfileCard-avatar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-airplay m-0"><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"></path><polygon points="12 15 17 21 7 21 12 15"></polygon></svg></div>
+            <div class="ProfileCard-details">
+            <div class="ProfileCard-realName">{{name}}</div>
+            </div>
+            </div>
+          </script>
+          <script class="empty-template" type="text/x-handlebars-template"><div class="EmptyMessage">Your search turned up 0 results. This most likely means the backend is down, yikes!</div></script>
+        </div>
+      </div>
+      <!-- Page Header Ends                              -->
+      <!-- Page Body Start-->
+      <div class="page-body-wrapper">
+        <!-- Page Sidebar Start-->
+        <div class="sidebar-wrapper">
+          <div>
+            <div class="logo-wrapper">
+              <a href="#"><img class="img-fluid for-light hg-50" src="../assets/images/logo/logo.png" alt=""><img class="img-fluid for-dark hg-50" src="../assets/images/logo/logo-dark.png" alt=""></a>
+              <div class="back-btn"><i class="fa fa-angle-left"></i></div>
+              <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="align-left"> </i></div>
+            </div>
+            <div class="logo-icon-wrapper"><a href="#"><img class="img-fluid for-light" src="../assets/images/logo/logo-icon.png" alt=""><img class="img-fluid for-dark" src="../assets/images/logo/logo-icon-dark.png" alt=""></a></div>
+            <nav class="sidebar-main">
+              <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
+              <div id="sidebar-menu">
+                <ul class="sidebar-links" id="simple-bar">
+                  <li class="back-btn">
+                    <a href="#"><img class="img-fluid for-light" src="../assets/images/logo/logo-icon.png" alt=""><img class="img-fluid for-dark" src="../assets/images/logo/logo-icon-dark.png" alt=""></a>
+                    <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Olah Gerak Kapal</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="home"></i><span>Home</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Overview</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="pergerakan-kapal.html"><i data-feather="map"></i><span>Pergerakan Kapal</span></a>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="pergerakan-kapal-cuaca.html"><i data-feather="cloud"></i><span>Cuaca</span></a>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="pergerakan-kapal-perhitungan-bbm.html"><i data-feather="anchor"></i><span>Kapal & BBM</span></a>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="compass"></i><span>Pointing Kapal</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Sorting Kapal</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="map-pin"></i><span>Mastering Kapal</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Status Kapal</a></li>
+                      <li><a href="#">GPS</a></li>
+                      <li><a href="#">Selling Time & Quota BBM</a></li>
+                      <li><a href="#">Route Terdekat</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Repair & Maintenance</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="home"> </i><span>Home</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Overview</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="rm-kapal.html"><i data-feather="anchor"> </i><span>Kapal</span></a>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="rm-maintenance.html"><i data-feather="settings"> </i><span>Maintenance</span></a>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="bell"> </i><span>Notifikasi</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Notifikasi Baru</a></li>
+                      <li><a href="#">Notifikasi Terkirim</a></li>
+                      <li><a href="#">Notifikasi Dibaca</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="monitor"> </i><span>Monitoring & Repair</span></a>
+                    <ul class="sidebar-submenu">
+                      <li>
+                        <a href="#">Monitoring Request</a>
+                        <ul class="sidebar-submenu">
+                          <li><a href="#">Monitoring Maintenance</a></li>
+                          <li><a href="#">Monitoring Docking</a></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a href="#">Repair Estimasi</a>
+                        <ul class="sidebar-submenu">
+                          <li><a href="#">Pemeriksaan</a></li>
+                          <li><a href="#">Perkiraan Biaya</a></li>
+                          <li><a href="#">Estimasi Biaya Perbaikan</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="check-square"> </i><span>Approval</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Persetujuan 1x24 Jam</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="dollar-sign"> </i><span>Finance</span></a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="#">Kontrol Estimasi Biaya</a></li>
+                      <li><a href="#">Penjelasan Estimasi Repair List</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="settings"> </i><span>Pengaturan</span></a>
+                    <ul class="sidebar-submenu">
+                      <li>
+                        <a href="#">Koneksi RM & Pergerakan Kapal</a>
+                        <ul class="sidebar-submenu">
+                          <li><a href="#">Notifikasi Peringatan Maintenance</a></li>
+                          <li><a href="#">Lembar Kerja Jadwal Input (2.5/5 Tahun)</a></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a href="#">Kategori Maintenance (MK/Kapal)</a>
+                        <ul class="sidebar-submenu">
+                          <li><a href="#">Maintenance oleh MK</a></li>
+                          <li><a href="#">Maintenance oleh Kapal</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="message-square"> </i><span>Chat</span></a>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Logistic</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="logistic-home.html"><i data-feather="home"> </i><span>Dashboard</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="logistic-layout-gudang.html"><i data-feather="box"> </i><span>Layout Gudang</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="logistic-pengeluaran-barang.html"><i data-feather="box"> </i><span>Pengelolaan Barang</span></a>
+                  </li>
+                  <li class="sidebar-list">  
+                    <a class="sidebar-link sidebar-title link-nav" href="logistic-penerimaan-barang.html"><i data-feather="box"> </i><span>Penerimaan Barang</span></a>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h4>Settings</h4>
+                    </div>
+                  </li>
+                  <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="edit"> </i><span>Roles</span></a></li>
+                  <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="sunrise"> </i><span>Documentation</span></a></li>
+                  <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="users"> </i><span>Support Ticket      </span></a></li>
+                </ul>
+                <div class="sidebar-img-section">
+                  <div class="sidebar-img-content">
+                    <img class="img-fluid" src="../assets/images/dashboard/upgrade/2.png" alt="">
+                    <h4>RB Control Hub <span style="font-size: 13px;"><br>Dashboard App</span></h4>
+                    <a class="btn btn-primary" href="#">Version 1.0</a>
+                  </div>
+                </div>
+              </div>
+              <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
+            </nav>
+          </div>
+        </div>
+        <!-- Page Sidebar Ends-->
+        <div class="page-body">
+          <div class="container-fluid">
+            <div class="page-title">
+              <div class="row">
+                <div class="col-6">
+                  <h3>Kapal & BBM</h3>
+                </div>
+                <div class="col-6">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">                                       <i data-feather="home"></i></a></li>
+                    <li class="breadcrumb-item">Logistic</li>
+                    <li class="breadcrumb-item active">Kapal & BBM</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Container-fluid starts-->
+          <div class="container-fluid">
+            <div class="row">
+              <!-- Section for Master BBM Price Setting -->
+              <div class="col-md-3">
+                <div class="card">
+                  <div class="card-header badge-primary">
+                    <h3 class="card-title text-light">Pengaturan Harga Master BBM</h3>
+                  </div>
+                  <div class="card-body">
+                    <!-- Informasi Harga BBM Terkini -->
+                    <div class="mb-3">
+                      <label for="currentBBMPrice">Harga BBM Terkini (Rp/liter):</label>
+                      <input type="text" class="form-control" id="currentBBMPrice" readonly>
+                    </div>
+                    <!-- Form Pengaturan Harga Master BBM -->
+                    <form id="formMasterBBM">
+                      <div class="mb-3">
+                        <label for="newBBMPrice">Harga BBM Baru (Rp/liter):</label>
+                        <input type="number" class="form-control" id="newBBMPrice"
+                          placeholder="Masukkan harga BBM per liter">
+                        <div id="newBBMPriceValidation" class="invalid-feedback"></div>
+                      </div>
+                      <!-- Input tanggal -->
+                      <div class="mb-3">
+                        <label for="newBBMDate">Tanggal:</label>
+                        <input type="date" class="form-control" id="newBBMDate">
+                        <!-- Anda dapat menambahkan pesan validasi di sini jika diperlukan -->
+                      </div>
+                      <button type="button" class="btn btn-primary" onclick="simpanHargaBBM()">Simpan</button>
+                    </form>
+                  </div>
+                </div>
+                <!-- Main Content: Fuel Calculator and Logbook -->
+                <div class="card">
+                  <div class="card-header badge-primary">
+                    <h3 class="card-title text-light mb-1">Kalkulator Kuota BBM</h3>
+                    <p class="text-light mb-1">Hitung perkiraan BBM untuk perjalanan.</p>
+                  </div>
+                  <div class="card-body">
+                    <div class="fuel-calculator">
+                      <form id="formFuelCalculator">
+                        <div class="form-group">
+                          <label for="originCalc">Asal:</label>
+                          <input type="text" class="form-control" id="originCalc" placeholder="Masukkan Asal">
+                          <div id="originCalcValidation" class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group">
+                          <label for="destinationCalc">Tujuan:</label>
+                          <input type="text" class="form-control" id="destinationCalc" placeholder="Masukkan Tujuan">
+                          <div id="destinationCalcValidation" class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group">
+                          <label for="distanceCalc">Jarak (mil laut):</label>
+                          <input type="number" class="form-control" id="distanceCalc"
+                            placeholder="Masukkan jarak dalam mil laut">
+                          <div id="distanceCalcValidation" class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group">
+                          <label for="quotaCalc">Kuota BBM (liter/mil):</label>
+                          <input type="number" class="form-control" id="quotaCalc"
+                            placeholder="Masukkan kuota bahan bakar">
+                          <div id="quotaCalcValidation" class="invalid-feedback"></div>
+                        </div>
+                        <div class="text-left">
+                          <button type="button" class="btn btn-primary" onclick="hitungBBM()">Hitung</button>
+                        </div>
+                      </form>
+                      <div style="margin-top: 15px; font-weight: bold;" id="resultCalc" class="text-center"></div>
+                      <div style="font-weight: bold;" id="costCalc" class="text-center"></div>
+                      <div style="font-weight: bold;" id="theoryCalc" class="text-center"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Section untuk Logbook BBM -->
+              <div class="col-md-3">
+                <div class="card">
+                  <div class="card-header badge-primary">
+                    <h3 class="card-title text-light mb-1">Pengisian BBM Kapal</h3>
+                  </div>
+                  <div class="card-body">
+                    <form id="formFuelLogbook">
+                      <div class="mb-3">
+                        <label for="shipIdLog">ID Kapal:</label>
+                        <select class="form-select" id="shipIdLog">
+                          <option selected disabled>Pilih ID Kapal</option>
+                          <option value="KPL001">KPL001</option>
+                          <option value="KPL002">KPL002</option>
+                          <option value="KPL003">KPL003</option>
+                        </select>
+                      </div>
+                      <div class="mb-3">
+                        <label for="originLog">Asal:</label>
+                        <select class="form-select" id="originLog" disabled>
+                          <option selected disabled>Pilih Asal</option>
+                        </select>
+                      </div>
+                      <div class="mb-3">
+                        <label for="destinationLog">Tujuan:</label>
+                        <select class="form-select" id="destinationLog" disabled>
+                          <option selected disabled>Pilih Tujuan</option>
+                        </select>
+                      </div>
+                      <div class="mb-3">
+                        <label for="fuelAmountLog">Jumlah Bahan Bakar (liter):</label>
+                        <input type="number" class="form-control" id="fuelAmountLog"
+                          placeholder="Masukkan Jumlah Bahan Bakar" readonly>
+                      </div>
+                      <div class="mb-3">
+                        <label for="fillingLocationLog">Lokasi Pengisian:</label>
+                        <select class="form-select" id="fillingLocationLog">
+                          <option selected disabled>Pilih Lokasi Pengisian</option>
+                          <option value="bunker">Bunker</option>
+                          <option value="pom">Pom Laut</option>
+                        </select>
+                      </div>
+                      <div class="mb-3">
+                        <label for="fillingDateTimeLog">Tanggal Waktu Pengisian:</label>
+                        <input type="datetime-local" class="form-control" id="fillingDateTimeLog">
+                      </div>
+                      <div class="mb-3">
+                        <label for="responsiblePersonLog">Penanggung Jawab:</label>
+                        <select class="form-select" id="responsiblePersonLog">
+                          <option selected disabled>Pilih Penanggung Jawab</option>
+                          <option value="John Doe">John Doe</option>
+                          <option value="Jane Smith">Jane Smith</option>
+                          <option value="Robert Brown">Robert Brown</option>
+                          <option value="Emily White">Emily White</option>
+                        </select>
+                      </div>
+                      <div class="mb-3">
+                        <label for="signatureLog">Tanda Tangan:</label>
+                        <canvas id="signatureLog" class="signature-pad" style="border: 1px solid #edecf2; border-radius: 10px; width: 100%;"></canvas>
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <button type="button" class="btn btn-primary" onclick="simpanLogbook()">Simpan</button>
+                          </div>
+                          <div class="col-lg-6" style="text-align: right;">
+                            <button type="button" class="btn btn-light" id="clearSignatureLog">Hapus</button>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <!-- Section untuk Tabel Logbook BBM -->
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-header badge-primary">
+                    <h3 class="card-title text-light mb-1">Tabel Kuota BBM</h3>
+                  </div>
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Asal</th>
+                        <th scope="col">Tujuan</th>
+                        <th scope="col">Jarak (mil laut)</th>
+                        <th scope="col">Kuota BBM (liter/mil)</th>
+                        <th scope="col">Total BBM (liter)</th>
+                        <th scope="col">Total Biaya BBM (Rp)</th>
+                      </tr>
+                    </thead>
+                    <tbody id="fuelRecords"></tbody>
+                  </table>
+                </div>
+                <div class="card">
+                  <div class="card-header badge-primary">
+                    <h3 class="card-title text-light mb-1">Tabel Pengisian BBM Kapal</h3>
+                  </div>
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>ID Kapal</th>
+                        <th>Asal</th>
+                        <th>Tujuan</th>
+                        <th>Jumlah (liter)</th>
+                        <th>Lokasi Pengisian</th>
+                        <th>Tanggal Waktu Pengisian</th>
+                        <th>Penanggung Jawab</th>
+                        <th>Tanda Tangan</th>
+                        <!-- Kolom untuk Total Biaya BBM -->
+                        <th>Total Biaya BBM (Rp)</th>
+                      </tr>
+                    </thead>
+                    <tbody id="bbmLogTableBody">
+                      <!-- Data akan dimasukkan ke sini dengan JavaScript -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Container-fluid Ends-->
+        </div>
+        <!-- footer start-->
+        <footer class="footer">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-2 p-0 footer-left"></div>
+              <div class="col-10 p-0 footer-right">
+                <p class="mb-0">Copyright 2023 © RB Control Hub by LTI</p>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+          const shipIdSelect = document.getElementById('shipIdLog');
+          const originSelectLog = document.getElementById('originLog');
+          const destinationSelectLog = document.getElementById('destinationLog');
+          const fuelAmountLog = document.getElementById('fuelAmountLog');
+          const signaturePad = new SignaturePad(document.getElementById('signatureLog'));
+          const clearButton = document.getElementById('clearSignatureLog');
+          let currentBBMPrice = 0;
+          let originOptions = new Set();
+          let destinationOptions = new Set();
+          let fuelRecords = [];
+      
+          // Fungsi untuk menyimpan harga BBM
+          function simpanHargaBBM() {
+              const bbmPrice = parseFloat(document.getElementById('newBBMPrice').value);
+              const bbmDate = document.getElementById('newBBMDate').value;
+              if (isNaN(bbmPrice) || bbmPrice <= 0 || !bbmDate) {
+                  document.getElementById('newBBMPriceValidation').innerText = "Harga BBM dan tanggal tidak valid.";
+                  document.getElementById('newBBMPrice').classList.add('is-invalid');
+              } else {
+                  document.getElementById('newBBMPrice').classList.remove('is-invalid');
+                  currentBBMPrice = bbmPrice;
+                  document.getElementById('currentBBMPrice').value = bbmPrice.toLocaleString('id-ID');
+                  document.getElementById('formMasterBBM').reset();
+              }
+          }
+      
+          // Fungsi untuk menghitung BBM
+          function hitungBBM() {
+              const origin = document.getElementById('originCalc').value;
+              const destination = document.getElementById('destinationCalc').value;
+              const distance = parseFloat(document.getElementById('distanceCalc').value);
+              const fuelQuota = parseFloat(document.getElementById('quotaCalc').value);
+      
+              if (!origin || !destination || isNaN(distance) || distance <= 0 || isNaN(fuelQuota) || fuelQuota <= 0) {
+                  if (!origin) document.getElementById('originCalc').classList.add('is-invalid');
+                  if (!destination) document.getElementById('destinationCalc').classList.add('is-invalid');
+                  if (isNaN(distance) || distance <= 0) document.getElementById('distanceCalc').classList.add('is-invalid');
+                  if (isNaN(fuelQuota) || fuelQuota <= 0) document.getElementById('quotaCalc').classList.add('is-invalid');
+              } else {
+                  document.getElementById('originCalc').classList.remove('is-invalid');
+                  document.getElementById('destinationCalc').classList.remove('is-invalid');
+                  document.getElementById('distanceCalc').classList.remove('is-invalid');
+                  document.getElementById('quotaCalc').classList.remove('is-invalid');
+      
+                  const totalFuel = distance * fuelQuota;
+                  const totalCost = totalFuel * currentBBMPrice;
+      
+                  document.getElementById('resultCalc').innerText = `Total BBM yang diperlukan: ${totalFuel.toFixed(2)} liter`;
+                  document.getElementById('costCalc').innerText = `Total Biaya BBM: Rp ${totalCost.toLocaleString('id-ID')} `;
+                  const recordRow = document.createElement('tr');
+              recordRow.innerHTML = `
+                  <td>${origin}</td>
+                  <td>${destination}</td>
+                  <td>${distance}</td>
+                  <td>${fuelQuota}</td>
+                  <td>${totalFuel.toFixed(2)}</td>
+                  <td>Rp ${totalCost.toLocaleString('id-ID')}</td>
+              `;
+              document.getElementById('fuelRecords').appendChild(recordRow);
+      
+              // Add new options to the origin and destination selects in the logbook form
+              if (!originOptions.has(origin)) {
+                  const originOption = document.createElement('option');
+                  originOption.value = origin;
+                  originOption.textContent = origin;
+                  originSelectLog.appendChild(originOption);
+                  originOptions.add(origin);
+              }
+              if (!destinationOptions.has(destination)) {
+                  const destinationOption = document.createElement('option');
+                  destinationOption.value = destination;
+                  destinationOption.textContent = destination;
+                  destinationSelectLog.appendChild(destinationOption);
+                  destinationOptions.add(destination);
+              }
+      
+              // Store the record
+              fuelRecords.push({
+                  origin,
+                  destination,
+                  totalFuel
+              });
+      
+              // Enable the selects if they were disabled
+              originSelectLog.disabled = false;
+              destinationSelectLog.disabled = false;
+          }
+      }
+      
+      // Fungsi untuk menyimpan logbook
+      function simpanLogbook() {
+          const shipId = shipIdSelect.value;
+          const origin = originSelectLog.value;
+          const destination = destinationSelectLog.value;
+          const fuelAmount = parseFloat(fuelAmountLog.value);
+          const fillingLocation = document.getElementById('fillingLocationLog').value;
+          const fillingDateTime = document.getElementById('fillingDateTimeLog').value;
+          const responsiblePerson = document.getElementById('responsiblePersonLog').value;
+          const signature = signaturePad.toDataURL();
+      
+          // Check if origin and destination match and get the fuel amount
+          const record = fuelRecords.find(record => record.origin === origin && record.destination === destination);
+          if (!record || fuelAmount !== record.totalFuel) {
+              alert('Data tidak sesuai atau tidak ada. Pastikan Asal, Tujuan, dan Jumlah Bahan Bakar sudah benar.');
+              return;
+          }
+      
+          if (!shipId || !origin || !destination || isNaN(fuelAmount) || fuelAmount <= 0 || !fillingLocation || !fillingDateTime || !responsiblePerson) {
+              alert('Semua kolom harus diisi.');
+          } else {
+              const totalCost = fuelAmount * currentBBMPrice;
+              const row = document.createElement('tr');
+              row.innerHTML = `
+                  <td>${shipId}</td>
+                  <td>${origin}</td>
+                  <td>${destination}</td>
+                  <td>${fuelAmount}</td>
+                  <td>${fillingLocation}</td>
+                  <td>${fillingDateTime}</td>
+                  <td>${responsiblePerson}</td>
+                  <td><img src="${signature}" alt="Tanda Tangan" style="width: 100px;"></td>
+                  <td>Rp ${totalCost.toLocaleString('id-ID')}</td>
+              `;
+              document.getElementById('bbmLogTableBody').appendChild(row);
+              document.getElementById('formFuelLogbook').reset();
+              signaturePad.clear();
+          }
+      }
+      
+      // Event listener untuk menghapus tanda tangan
+      clearButton.addEventListener('click', function () {
+          signaturePad.clear();
+      });
+      
+      // Event listener untuk mengisi jumlah BBM saat Asal dan Tujuan dipilih
+      originSelectLog.addEventListener('change', updateFuelAmountLog);
+      destinationSelectLog.addEventListener('change', updateFuelAmountLog);
+      
+      function updateFuelAmountLog() {
+          const origin = originSelectLog.value;
+          const destination = destinationSelectLog.value;
+          const record = fuelRecords.find(record => record.origin === origin && record.destination === destination);
+          if (record) {
+              fuelAmountLog.value = record.totalFuel;
+          } else {
+              fuelAmountLog.value = '';
+          }
+      }
+      
+      window.simpanHargaBBM = simpanHargaBBM;
+      window.hitungBBM = hitungBBM;
+      window.simpanLogbook = simpanLogbook;
+      });
+    </script>
+    <!-- latest jquery-->
+    <script src="../assets/js/jquery-3.6.0.min.js"></script>
+    <script src="../assets/js/bootstrap/popper.min.js"></script>
+    <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+    <!-- feather icon js-->
+    <script src="../assets/js/icons/feather-icon/feather.min.js"></script>
+    <script src="../assets/js/icons/feather-icon/feather-icon.js"></script>
+    <script src="../assets/js/scrollbar/simplebar.js"></script>
+    <script src="../assets/js/scrollbar/custom.js"></script>
+    <!-- Sidebar jquery-->
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/sidebar-menu.js"></script>
+    <script src="../assets/js/tooltip-init.js"></script>
+    <!-- Theme js-->
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/theme-customizer/customizer.js"></script>
+  </body>
+</html>
